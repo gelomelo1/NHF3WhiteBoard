@@ -33,6 +33,8 @@ public class ToolButtonsMenu extends JPanel {
         assignButton(modeChangerButton, modeChangerButtonListener);
         modeChangerButton = new ModeChangerButton("Draw", this, ModesChanger.Draw);
         assignButton(modeChangerButton, modeChangerButtonListener);
+        modeChangerButton = new ModeChangerButton("Erase", this, ModesChanger.Erase);
+        assignButton(modeChangerButton, modeChangerButtonListener);
         modeChangerButton = new ModeChangerButton("Text", this, ModesChanger.Text);
         assignButton(modeChangerButton, modeChangerButtonListener);
         modeChangerButton = new ModeChangerButton("Image", this, ModesChanger.Image);

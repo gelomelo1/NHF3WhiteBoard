@@ -1,7 +1,6 @@
 package listeners;
 
 import java.awt.event.MouseEvent;
-
 import canvasmodes.DrawCanvasMode;
 
 public class DrawCanvasModeListener extends DefaultCanvasModeListener {

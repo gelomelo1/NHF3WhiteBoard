@@ -3,29 +3,28 @@ package canvasmodes;
 import listeners.DrawCanvasModeListener;
 import java.awt.Point;
 import java.util.ArrayList;
-
+import containers.Drawing;
 import panels.Canvas;
+import panels.ToolPropertiesMenu;
 
 public class DrawCanvasMode extends DefaultCanvasMode {
-private int stroke = 10;
-private ArrayList<Point> tempCurve;
+private Drawing tempCurve;
 
-public DrawCanvasMode(Canvas canvas)
+public DrawCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu)
 {
-    super(canvas);
+    super(canvas, toolPropertiesMenu, false);
     setMouseListener(new DrawCanvasModeListener(this));
 }
 
 public void StartNewCurve(Point point)
 {
-    tempCurve = new ArrayList<Point>();
+    tempCurve = new Drawing();
     getCanvas().addCurve(tempCurve);
-    tempCurve.add(point);
 }
 
 public void AddPoint(Point point)
 {
-    tempCurve.add(point);
+    tempCurve.addPoint(point);
     getCanvas().repaint();
 }
 

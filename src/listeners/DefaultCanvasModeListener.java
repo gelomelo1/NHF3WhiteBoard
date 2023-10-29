@@ -32,4 +32,11 @@ public class DefaultCanvasModeListener extends MouseAdapter {
     {
         defaultCanvasMode.Move(new Point(Double.valueOf(e.getX() - mousePos.getX()).intValue(), Double.valueOf(e.getY() - mousePos.getY()).intValue()));
     }
+
+    public void mouseMoved(MouseEvent e)
+    {
+        defaultCanvasMode.setMousePos(e.getPoint());
+        if(defaultCanvasMode.getIsMenuUpdateable())
+           defaultCanvasMode.update();
+    }
 }

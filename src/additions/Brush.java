@@ -7,6 +7,18 @@ public class Brush {
 
     private Color color = Color.black;
     private BasicStroke stroke = new BasicStroke(1);
+    private int maxStroke = 20;
+
+    public Brush()
+    {
+
+    }
+
+    public Brush(Brush brush)
+    {
+        this.color = brush.color;
+        this.stroke = brush.stroke;
+    }
 
     public void setColor(Color c)
     {
@@ -26,6 +38,11 @@ public class Brush {
     public BasicStroke getStroke()
     {
         return stroke;
+    }
+
+    public int getMaxStroke()
+    {
+        return maxStroke;
     }
 
 }

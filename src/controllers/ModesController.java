@@ -4,21 +4,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import canvasmodes.DefaultCanvasMode;
 import panels.Canvas;
+import panels.MoveToolPropertiesMenu;
 import panels.ToolMenu;
+import panels.ToolPropertiesMenu;
 import uiholders.Menu;
 
 public class ModesController {
 
     //controller items
     private Menu menu;
-    private JPanel toolsMenu;
+    private ToolMenu toolsMenu;
     private Canvas canvas;
     private DefaultCanvasMode canvasMode;
 
     public ModesController(Menu menu, JFrame jf)
     {
         initController(menu, jf);
-        changeMode(new DefaultCanvasMode(canvas));
+        ToolPropertiesMenu toolPropertiesMenu = new MoveToolPropertiesMenu(canvas);
+        changeMode(new DefaultCanvasMode(canvas, toolPropertiesMenu), toolPropertiesMenu);
     }
 
     private void initController(Menu menu, JFrame jf)
@@ -28,9 +31,10 @@ public class ModesController {
         toolsMenu = new ToolMenu(jf, this);
     }
 
-    public void changeMode(DefaultCanvasMode newMode)
+    public void changeMode(DefaultCanvasMode newMode, JPanel toolpropertiesMenu)
     {
         canvasMode = newMode;
+        toolsMenu.setToolPropertiesMenu(toolpropertiesMenu);
     }
 
     public Canvas getCanvas()

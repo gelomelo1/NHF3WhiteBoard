@@ -31,6 +31,16 @@ public class ToolMenu extends JPanel {
         setPreferredSize(new Dimension(toolMenuWidth, 0));
         toolButtonsMenu = new ToolButtonsMenu(modesController);
         add(toolButtonsMenu);
-        toolPropertiesMenu = null;
+    }
+
+    public void setToolPropertiesMenu(JPanel toolPropertiesMenu)
+    {
+        if(this.toolPropertiesMenu != null)
+        {
+           remove(this.toolPropertiesMenu);
+        }
+        this.toolPropertiesMenu = toolPropertiesMenu;
+        add(this.toolPropertiesMenu);
+        revalidate();
     }
 }
