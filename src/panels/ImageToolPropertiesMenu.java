@@ -6,67 +6,63 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 import additions.PropertiesInput;
-import containers.CanvasText;
+import containers.CanvasImage;
 import listeners.PropertiesInputListener;
 
-public class TextToolPropertiesMenu extends ToolPropertiesMenu implements PropertiesInput {
+public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements PropertiesInput {
     private JTextField posX;
     private JTextField posY;
     private JTextField width;
     private JTextField height;
-    private JTextField fontSize;
-    private PropertiesInputListener textToolPropertiesListener;
+    private PropertiesInputListener imageToolPropertiesListener;
 
-    public TextToolPropertiesMenu(Canvas canvas)
+    public ImageToolPropertiesMenu(Canvas canvas)
     {
         super(canvas);
     }
 
     @Override
     protected void initMenu() {
-        textToolPropertiesListener = new PropertiesInputListener(this);
-        setLayout(new GridLayout(5, 5));
+        imageToolPropertiesListener = new PropertiesInputListener(this);
+        setLayout(new GridLayout(4, 4));
         posX = initFields("Position X:");
         posY = initFields("Position Y:");
         width = initFields("Width:");
         height = initFields("Height:");
-        fontSize = initFields("Font size:");
-        getCanvas().setSelectedText(null);
+        getCanvas().setSelectedImage(null);
     }
 
     private JTextField initFields(String labelName)
     {
         add(new JLabel(labelName));
         JTextField value = new JTextField();
-        value.getDocument().addDocumentListener(textToolPropertiesListener);
+        value.getDocument().addDocumentListener(imageToolPropertiesListener);
         add(value);
         return value;
     }
 
     @Override
     protected String getPropertyName() {
-        return "Text";
+        return "Image";
     }
 
     @Override
     protected void update() {
-        CanvasText text = getCanvas().getSelectedText();
-        if(text == null)
+        CanvasImage image = getCanvas().getSelectedImage();
+        if(image == null)
         {
             posX.setText("");
             posY.setText("");
             width.setText("");
             height.setText("");
-            fontSize.setText("");
         }
         else
         {
-            Rectangle rectangle = text.getBounds();
+            Rectangle rectangle = image.getBounds();
             posX.setText(Integer.valueOf(rectangle.x).toString());
             posY.setText(Integer.valueOf(rectangle.y).toString());
             width.setText(Integer.valueOf(rectangle.width).toString());
             height.setText(Integer.valueOf(rectangle.height).toString());
-            fontSize.setText(Integer.valueOf(text.getFont().getSize()).toString());
         }
     }
 
@@ -85,19 +81,12 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
         return false;
     }
 
-    public void changeValue(Document document)
-    {
+    @Override
+    public void changeValue(Document document) {
         try
         {
         int value;
-        if(document == fontSize.getDocument())
-        {
-            value = Integer.parseInt(fontSize.getText());
-            getCanvas().getSelectedText().changeFontSize(value);
-        }
-        else
-        {
-        Rectangle rectangle = getCanvas().getSelectedText().getBounds();
+        Rectangle rectangle = getCanvas().getSelectedImage().getBounds();
         if(document == posX.getDocument())
         {
             value = Integer.parseInt(posX.getText());
@@ -122,12 +111,11 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
             if(valueIsValid(value, false))
             rectangle.height = value;
         }
-        getCanvas().getSelectedText().setBounds(rectangle);
+        getCanvas().getSelectedImage().setBounds(rectangle);
         }
-    }
     catch(NumberFormatException e)
     {
 
     }
-        }  
+}
 }

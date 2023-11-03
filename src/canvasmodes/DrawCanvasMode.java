@@ -2,7 +2,6 @@ package canvasmodes;
 
 import listeners.DrawCanvasModeListener;
 import java.awt.Point;
-import java.util.ArrayList;
 import containers.Drawing;
 import panels.Canvas;
 import panels.ToolPropertiesMenu;

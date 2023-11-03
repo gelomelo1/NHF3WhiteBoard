@@ -25,6 +25,7 @@ public class EraseCanvasMode extends DefaultCanvasMode {
             break;
         }
     }
+    getCanvas().revalidate();
     getCanvas().repaint();
  }
 }

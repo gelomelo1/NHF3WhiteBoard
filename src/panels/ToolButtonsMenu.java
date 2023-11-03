@@ -1,10 +1,7 @@
 package panels;
 
 import java.awt.GridLayout;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
-
 import additions.ModeChangerButton;
 import additions.ModeChangerButton.ModesChanger;
 import controllers.ModesController;

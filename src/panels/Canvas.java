@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import additions.Background;
 import additions.Brush;
 import additions.CanvasActivity;
+import containers.CanvasImage;
+import containers.CanvasText;
 import containers.Drawing;
 
 public class Canvas extends JPanel {
@@ -29,8 +31,13 @@ public class Canvas extends JPanel {
     private ToolPropertiesMenu toolPropertiesMenu;
     private Point mousePos;
     private Brush brush;
+    private CanvasText selectedText;
+    private CanvasImage selectedImage;
 
+    //containers
     private ArrayList<Drawing> curves;
+    private ArrayList<CanvasText> texts;
+    private ArrayList<CanvasImage> images;
 
     public Canvas(JFrame jf)
     {
@@ -49,9 +56,12 @@ public class Canvas extends JPanel {
     private void initComp(JFrame jf)
     {
         canvasLayout = new JScrollPane();
+        setLayout(null);
         jf.add(canvasLayout, BorderLayout.CENTER);
         background = new Background();
         curves = new ArrayList<Drawing>();
+        texts = new ArrayList<CanvasText>();
+        images = new ArrayList<CanvasImage>();
         brush = new Brush();
         mousePos = new Point(0, 0);
         toolPropertiesMenu = null;
@@ -59,7 +69,6 @@ public class Canvas extends JPanel {
 
     private void drawCurves(Graphics2D g2)
     {
-        Color primaryColor = g2.getColor();
         for (Drawing curve : curves) {
             g2.setColor(curve.getColor());
             g2.setStroke(curve.getStroke());
@@ -80,6 +89,7 @@ public class Canvas extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         background.drawBackground(g2, maxWidth, maxHeight);
         drawCurves(g2);
+        g2.setStroke(new BasicStroke(0));
     }
 
     public void setMouseListener(MouseAdapter mouseListener)
@@ -138,9 +148,37 @@ public class Canvas extends JPanel {
         brush.setStroke(new BasicStroke(stroke));
     }
 
+    public CanvasText addText(Point point)
+    {
+        CanvasText text = new CanvasText();
+        text.setBounds(point.x, point.y, 100, 100);
+        add(text);
+        texts.add(text);
+        return text;
+    }
+
+    public CanvasImage addImage(Point point, String path)
+    {
+        CanvasImage image = new CanvasImage(path);
+        image.setBounds(point.x, point.y, 100, 100);
+        add(image);
+        images.add(image);
+        return image;
+    }
+
     public ArrayList<Drawing> getCurves()
     {
         return curves;
+    }
+
+    public ArrayList<CanvasText> getTexts()
+    {
+        return texts;
+    }
+
+    public ArrayList<CanvasImage> getImages()
+    {
+        return images;
     }
 
     public ArrayList<CanvasActivity> getCanvasObjects()
@@ -149,6 +187,42 @@ public class Canvas extends JPanel {
         for (Drawing drawings : curves) {
             canvObjects.add(drawings);
         }
+        for (CanvasText canvasText : texts) {
+            canvObjects.add(canvasText);
+        }
+        for (CanvasImage image : images) {
+            canvObjects.add(image);
+        }
         return canvObjects;
+    }
+
+    public CanvasText getSelectedText()
+    {
+        return selectedText;
+    }
+
+    public void setSelectedText(CanvasText selectedText)
+    {
+        this.selectedText = selectedText;
+    }
+
+    public CanvasImage getSelectedImage()
+    {
+        return selectedImage;
+    }
+
+    public void setSelectedImage(CanvasImage selectedImage)
+    {
+        this.selectedImage = selectedImage;
+    }
+
+    public int getMaxWidth()
+    {
+        return maxWidth;
+    }
+
+    public int getMaxHeight()
+    {
+        return maxHeight;
     }
 }

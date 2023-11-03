@@ -4,9 +4,11 @@ import javax.swing.JButton;
 import canvasmodes.DefaultCanvasMode;
 import canvasmodes.DrawCanvasMode;
 import canvasmodes.EraseCanvasMode;
+import canvasmodes.ImageCanvasMode;
 import canvasmodes.TextCanvasMode;
 import panels.DrawToolPropertiesMenu;
 import panels.EraseToolPropertiesMenu;
+import panels.ImageToolPropertiesMenu;
 import panels.MoveToolPropertiesMenu;
 import panels.TextToolPropertiesMenu;
 import panels.ToolButtonsMenu;
@@ -61,6 +63,13 @@ public void change()
         {
             toolPropertiesMenu = new TextToolPropertiesMenu(toolButtonsMenu.getModesController().getCanvas());
             canvasMode = new TextCanvasMode(toolButtonsMenu.getModesController().getCanvas(), toolPropertiesMenu);
+            break;
+        }
+        case Image:
+        {
+            toolPropertiesMenu = new ImageToolPropertiesMenu(toolButtonsMenu.getModesController().getCanvas());
+            canvasMode = new ImageCanvasMode(toolButtonsMenu.getModesController().getCanvas(), toolPropertiesMenu);
+            break;
         }
     }
     toolButtonsMenu.getModesController().changeMode(canvasMode, toolPropertiesMenu);

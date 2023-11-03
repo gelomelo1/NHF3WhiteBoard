@@ -15,12 +15,20 @@ public class TextCanvasModeListener extends DefaultCanvasModeListener {
     public void mouseClicked(MouseEvent e)
     {
         if(getPressedMouse() == MouseEvent.BUTTON1)
+        {
             textCanvasMode.placeText(e.getPoint());
+            textCanvasMode.update();
+        }
     }
 
     public void mouseDragged(MouseEvent e)
     {
-        if(e.getButton() == MouseEvent.BUTTON3)
+        if(getPressedMouse() == MouseEvent.BUTTON3)
             super.mouseDragged(e);
+    }
+
+    public void mouseMoved(MouseEvent e)
+    {
+
     }
 }

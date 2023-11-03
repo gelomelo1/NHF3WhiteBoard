@@ -25,6 +25,6 @@ public class EraseCanvasModeListener extends DefaultCanvasModeListener {
         if(getPressedMouse() == MouseEvent.BUTTON3)
            super.mouseDragged(e);
         else if(getPressedMouse() == MouseEvent.BUTTON1)
-           eraseCanvasMode.erase(e.getPoint());
+            eraseCanvasMode.erase(e.getPoint());
     }
 }
