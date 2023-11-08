@@ -10,6 +10,7 @@ import fileios.FileHandler;
 import listeners.ImageCanvasModeListener;
 import panels.Canvas;
 import panels.ToolPropertiesMenu;
+import uiholders.Menu;
 
 public class ImageCanvasMode extends DefaultCanvasMode {
 
@@ -24,7 +25,7 @@ public void placeImage(Point point)
     String path = checkImageData();
     if(path != null)
     {
-    String destination = Paths.get("").toAbsolutePath().resolve("Temp").toString();
+    String destination = Paths.get("").toAbsolutePath().resolve(Menu.getTempFolder()).toString();
     if(!FileHandler.copyFile(path, destination))
     JOptionPane.showMessageDialog(null, "Cannot save the image", "Warning", JOptionPane.WARNING_MESSAGE);
     destination += path.substring(path.lastIndexOf("\\"));

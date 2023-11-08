@@ -1,6 +1,9 @@
 package fileios;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -61,5 +64,13 @@ public class FileHandler {
         return false;
         File file = new File(path);
         return file.delete();
+    }
+
+    public static void saveObject(String path, Object object) throws IOException
+    {
+        FileOutputStream fileOutputStream = new FileOutputStream(path);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(object);
+        objectOutputStream.close();   
     }
 }

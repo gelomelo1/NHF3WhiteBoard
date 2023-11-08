@@ -2,11 +2,12 @@ package additions;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.io.Serializable;
 
-public class Brush {
+public class Brush implements Serializable {
 
     private Color color = Color.black;
-    private BasicStroke stroke = new BasicStroke(1);
+    private transient BasicStroke stroke = new BasicStroke(1);
     private int maxStroke = 20;
 
     public Brush()

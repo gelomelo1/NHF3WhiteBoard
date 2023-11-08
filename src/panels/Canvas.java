@@ -18,6 +18,7 @@ import additions.CanvasActivity;
 import containers.CanvasImage;
 import containers.CanvasText;
 import containers.Drawing;
+import containers.SaveContainer;
 
 public class Canvas extends JPanel {
 
@@ -59,12 +60,24 @@ public class Canvas extends JPanel {
         setLayout(null);
         jf.add(canvasLayout, BorderLayout.CENTER);
         background = new Background();
-        curves = new ArrayList<Drawing>();
-        texts = new ArrayList<CanvasText>();
-        images = new ArrayList<CanvasImage>();
+        newCanvas();
         brush = new Brush();
         mousePos = new Point(0, 0);
         toolPropertiesMenu = null;
+    }
+
+    private void initializeLoadedData()
+    {
+        removeAll();
+        for (CanvasImage canvasImage : images) {
+            canvasImage.loadImage();
+            add(canvasImage);
+        }
+
+        for (CanvasText canvasText : texts) {
+            add(canvasText);
+        }
+        repaint();
     }
 
     private void drawCurves(Graphics2D g2)
@@ -224,5 +237,26 @@ public class Canvas extends JPanel {
     public int getMaxHeight()
     {
         return maxHeight;
+    }
+
+    public void newCanvas()
+    {
+        curves = new ArrayList<Drawing>();
+        texts = new ArrayList<CanvasText>();
+        images = new ArrayList<CanvasImage>();
+        initializeLoadedData();
+    }
+
+    public SaveContainer saveCanvas()
+    {
+        return new SaveContainer(images, texts, curves, "", "");
+    }
+
+    public void loadCanvas(SaveContainer container)
+    {
+        images = container.getImages();
+        texts = container.getTexts();
+        curves = container.getDrawings();
+        initializeLoadedData();
     }
 }

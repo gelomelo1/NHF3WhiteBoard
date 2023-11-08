@@ -7,8 +7,9 @@ import panels.Canvas;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Point;
+import java.io.Serializable;
 
-public class Drawing implements CanvasActivity {
+public class Drawing implements CanvasActivity, Serializable {
     private Brush brush;
     private ArrayList<Point> curve;
 

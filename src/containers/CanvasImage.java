@@ -27,6 +27,11 @@ public void setBounds(Rectangle rectangle)
     super.setBounds(rectangle);
 }
 
+public void loadImage()
+{
+    image = new ImageIcon(path);
+}
+
 @Override
 public boolean isCollided(Point point) {
     return getBounds().contains(point);

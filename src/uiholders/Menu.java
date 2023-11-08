@@ -11,8 +11,11 @@ import panels.MenuBar;
 
 public class Menu {
     //Some base attributes
-    private int width = 1280;
-    private int heigth = 960;
+    private static int width = 1280;
+    private static int heigth = 960;
+    private static String tempFolder = "Temp";
+    private static String boardsFolder = "Boards";
+    private static String resourcesFolder = "Resources";
 
     //JFrames and Panels for the layout
     private JFrame jf;
@@ -38,13 +41,13 @@ public class Menu {
 
     private void initPanels()
     {
-        menuBar = new MenuBar(jf);
         modesController = new ModesController(this, jf);
+        menuBar = new MenuBar(jf, modesController.getCanvas());
     }
 
     private void initFolders()
     {
-        if(!(FileHandler.createFolder("Temp") && FileHandler.createFolder("Boards") && FileHandler.isFileExist("Resources")))
+        if(!(FileHandler.createFolder(tempFolder) && FileHandler.createFolder(boardsFolder) && FileHandler.isFileExist(resourcesFolder)))
         {
            JOptionPane.showMessageDialog(null, "Error occured while verifying folders!", "Error", JOptionPane.ERROR_MESSAGE);
            Exit();
@@ -54,11 +57,26 @@ public class Menu {
 
     public void deleteTempFolder()
     {
-        File dir = Paths.get("").toAbsolutePath().resolve("Temp").toFile();
+        File dir = Paths.get("").toAbsolutePath().resolve(tempFolder).toFile();
         File[] files = dir.listFiles();
         for (File file : files) {
             FileHandler.deleteFile(file.getAbsolutePath());
         }
+    }
+
+    public static String getTempFolder()
+    {
+        return tempFolder;
+    }
+
+    public static String getBoardsFolder()
+    {
+        return boardsFolder;
+    }
+
+    public static String getResourcesFolder()
+    {
+        return resourcesFolder;
     }
 
     public static void Exit()
