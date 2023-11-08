@@ -3,6 +3,7 @@ package containers;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.nio.file.Paths;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import additions.CanvasActivity;
@@ -27,9 +28,19 @@ public void setBounds(Rectangle rectangle)
     super.setBounds(rectangle);
 }
 
+public String getPath()
+{
+    return path;
+}
+
+public void setPath(String path)
+{
+    this.path = path;
+}
+
 public void loadImage()
 {
-    image = new ImageIcon(path);
+    image = new ImageIcon(Paths.get("").toAbsolutePath().resolve(path).toString());
 }
 
 @Override

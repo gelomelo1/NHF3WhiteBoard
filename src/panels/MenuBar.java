@@ -1,5 +1,6 @@
 package panels;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -78,14 +79,19 @@ public class MenuBar extends JMenuBar {
         add(menuTexts.get(1));
     }
 
-    public void turnOffMainFrame()
+    private void copyImages(String source, String destination)
     {
-        jf.setEnabled(false);
+        File[] images = FileHandler.getFolderFiles(source);
+        String[] extensions = {"png", "jpg", "jpeg"};
+        for (File file : images) {
+            if(FileHandler.validExtension((source + "\\" + file.getName()).toString(), extensions))
+                FileHandler.copyFile((source + "\\" + file.getName()).toString(), destination);
+        }
     }
 
-    public void turnOnMainFrame()
+    public JFrame getJF()
     {
-        jf.setEnabled(true);
+        return jf;
     }
 
     public void changeTexts(String name, String description)
@@ -110,9 +116,12 @@ public class MenuBar extends JMenuBar {
         FileHandler.createFolder(Paths.get("").toAbsolutePath().resolve(Menu.getBoardsFolder() + "\\" + name).toString());
         SaveContainer canvasData = canvas.saveCanvas();
         SaveContainer pack = new SaveContainer(canvasData.getImages(), canvasData.getTexts(), canvasData.getDrawings(), name, description);
+        pack.changeImagesPath(Menu.getBoardsFolder() + "\\" + name);
         try {
         FileHandler.saveObject(Paths.get("").toAbsolutePath().resolve(Menu.getBoardsFolder() + "\\" + name + "\\" + name + ".ser").toString(), pack);
-        changeTexts(name, description);   
+        copyImages((Paths.get("").toAbsolutePath().resolve(Menu.getTempFolder()).toString()) ,Menu.getBoardsFolder() + "\\" + name);
+        changeTexts(name, description);
+        JOptionPane.showMessageDialog(null, "Board saved successfully!", "Error", JOptionPane.INFORMATION_MESSAGE);   
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occured during save!", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -120,6 +129,45 @@ public class MenuBar extends JMenuBar {
 
     public void createNew()
     {
+        changeTexts("", "");
+        Menu.deleteTempFolder();
         canvas.newCanvas();
+    }
+
+    public void startLoad()
+    {
+        LoadMenu loadMenu = new LoadMenu(this, loadObjects());
+    }
+
+    public ArrayList<SaveContainer> loadObjects()
+    {
+        ArrayList<SaveContainer> containers = new ArrayList<SaveContainer>();
+        boolean showed = false;
+        File[] boardFolders = FileHandler.getFolderFiles(Paths.get("").toAbsolutePath().resolve(Menu.getBoardsFolder()).toString());
+        for(int i = 0; i < boardFolders.length; i++)
+        {
+            try {
+               SaveContainer loadedContainer = (SaveContainer)FileHandler.loadObject(boardFolders[i].getAbsolutePath() + "\\" + boardFolders[i].getName() + ".ser");
+               containers.add(loadedContainer);   
+            } catch (Exception e) {
+                if(!showed)
+                {
+                JOptionPane.showMessageDialog(null, "Failed to load all boards!", "Error", JOptionPane.ERROR_MESSAGE);
+                showed = true;
+                }
+            }
+        }
+        return containers;
+    }
+
+    public void load(SaveContainer container)
+    {
+        if(container != null)
+        {
+            Menu.deleteTempFolder();
+            copyImages(Paths.get("").toAbsolutePath().resolve(Menu.getBoardsFolder() + "\\" + container.getName()).toString(), Paths.get("").toAbsolutePath().resolve(Menu.getTempFolder()).toString());
+            changeTexts(container.getName(), container.getDescription());
+            canvas.loadCanvas(container);
+        }
     }
 }

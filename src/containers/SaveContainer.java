@@ -19,6 +19,11 @@ public class SaveContainer implements Serializable {
         this.description = description;
     }
 
+    public String toString()
+    {
+        return getName();
+    }
+
     public ArrayList<CanvasImage> getImages()
     {
         return images;
@@ -42,5 +47,13 @@ public class SaveContainer implements Serializable {
     public String getDescription()
     {
         return description;
+    }
+
+    public void changeImagesPath(String folder)
+    {
+        for (CanvasImage canvasImage : images) {
+            String name = canvasImage.getPath().substring(canvasImage.getPath().lastIndexOf("\\") + 1);
+            canvasImage.setPath(folder + "\\" + name);
+        }
     }
 }

@@ -1,8 +1,10 @@
 package fileios;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -72,5 +74,21 @@ public class FileHandler {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(object);
         objectOutputStream.close();   
+    }
+
+    public static File[] getFolderFiles(String path)
+    {
+        File folder = new File(path);
+        File[] files = folder.listFiles();
+        return files;
+    }
+
+    public static Object loadObject(String path) throws Exception
+    {
+        FileInputStream fileInputStream = new FileInputStream(path);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Object loadedObject = objectInputStream.readObject();
+        objectInputStream.close();
+        return loadedObject;
     }
 }

@@ -77,6 +77,9 @@ public class Canvas extends JPanel {
         for (CanvasText canvasText : texts) {
             add(canvasText);
         }
+        for (Drawing drawing : curves) {
+            drawing.initializeBrush();
+        }
         repaint();
     }
 

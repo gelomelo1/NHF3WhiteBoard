@@ -1,8 +1,13 @@
 package panels;
 
+import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.Rectangle;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 import additions.PropertiesInput;
@@ -14,6 +19,7 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
     private JTextField posY;
     private JTextField width;
     private JTextField height;
+    private JButton copy;
     private PropertiesInputListener imageToolPropertiesListener;
 
     public ImageToolPropertiesMenu(Canvas canvas)
@@ -24,20 +30,34 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
     @Override
     protected void initMenu() {
         imageToolPropertiesListener = new PropertiesInputListener(this);
-        setLayout(new GridLayout(4, 4));
-        posX = initFields("Position X:");
-        posY = initFields("Position Y:");
-        width = initFields("Width:");
-        height = initFields("Height:");
+        JPanel textPanel = new JPanel();
+        add(textPanel);
+        JPanel buttonPanel = new JPanel();
+        add(buttonPanel);
+        textPanel.setLayout(new GridLayout(4, 4));
+        posX = initFields("Position X:", textPanel);
+        posY = initFields("Position Y:", textPanel);
+        width = initFields("Width:", textPanel);
+        height = initFields("Height:", textPanel);
+        copy = initButton("Copy", buttonPanel);
         getCanvas().setSelectedImage(null);
     }
 
-    private JTextField initFields(String labelName)
+    private JButton initButton(String name, JPanel panel)
     {
-        add(new JLabel(labelName));
+        JButton button = new JButton(name);
+        button.addActionListener(e -> {copyImage();});
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(button);
+        return button;
+    }
+
+    private JTextField initFields(String labelName, JPanel panel)
+    {
+        panel.add(new JLabel(labelName));
         JTextField value = new JTextField();
         value.getDocument().addDocumentListener(imageToolPropertiesListener);
-        add(value);
+        panel.add(value);
         return value;
     }
 
@@ -79,6 +99,28 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
             return true;
         }
         return false;
+    }
+
+    private void copyImage()
+    {
+        if(getCanvas().getSelectedImage() != null)
+        {
+        Rectangle originalPos = getCanvas().getSelectedImage().getBounds();
+        String path = getCanvas().getSelectedImage().getPath();
+        Point point = new Point();
+        int copyOffset = Double.valueOf(Math.sqrt(Math.pow((originalPos.width / 2), 2) + Math.pow(originalPos.height / 2, 2))).intValue() + 20;
+        int[][] directions = {{copyOffset, copyOffset}, {-copyOffset, copyOffset}, {copyOffset, -copyOffset}, {-copyOffset, -copyOffset}};
+        for(int i = 0; i < 4; i++)
+        {
+            point.x = originalPos.x + originalPos.width / 2 +  directions[i][0];
+            point.y = originalPos.y + originalPos.height / 2 + directions[i][1];
+            if(valueIsValid(point.x, true) && valueIsValid(point.y, false))
+                break;
+        }
+        CanvasImage image = getCanvas().addImage(point, path);
+        getCanvas().setSelectedImage(image);
+        getCanvas().repaint();
+        }
     }
 
     @Override

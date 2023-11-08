@@ -55,7 +55,7 @@ public class Menu {
         deleteTempFolder();
     }
 
-    public void deleteTempFolder()
+    public static void deleteTempFolder()
     {
         File dir = Paths.get("").toAbsolutePath().resolve(tempFolder).toFile();
         File[] files = dir.listFiles();

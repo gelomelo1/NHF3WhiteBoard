@@ -3,6 +3,7 @@ package panels;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 import additions.PropertiesInput;
@@ -25,21 +26,23 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
     @Override
     protected void initMenu() {
         textToolPropertiesListener = new PropertiesInputListener(this);
-        setLayout(new GridLayout(5, 5));
-        posX = initFields("Position X:");
-        posY = initFields("Position Y:");
-        width = initFields("Width:");
-        height = initFields("Height:");
-        fontSize = initFields("Font size:");
+        JPanel textPanel = new JPanel();
+        textPanel.setLayout(new GridLayout(5, 5));
+        add(textPanel);
+        posX = initFields("Position X:", textPanel);
+        posY = initFields("Position Y:", textPanel);
+        width = initFields("Width:", textPanel);
+        height = initFields("Height:", textPanel);
+        fontSize = initFields("Font size:", textPanel);
         getCanvas().setSelectedText(null);
     }
 
-    private JTextField initFields(String labelName)
+    private JTextField initFields(String labelName, JPanel panel)
     {
-        add(new JLabel(labelName));
+        panel.add(new JLabel(labelName));
         JTextField value = new JTextField();
         value.getDocument().addDocumentListener(textToolPropertiesListener);
-        add(value);
+        panel.add(value);
         return value;
     }
 

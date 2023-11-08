@@ -44,6 +44,11 @@ public class Drawing implements CanvasActivity, Serializable {
         return curve;
     }
 
+    public void initializeBrush()
+    {
+        brush.setStroke(new BasicStroke(brush.getCurrentStroke()));
+    }
+
     @Override
     public boolean isCollided(Point point) {
         int radius;

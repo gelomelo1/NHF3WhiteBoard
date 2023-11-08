@@ -34,7 +34,7 @@ public class FileMenu extends JMenu {
             }
             case Load:
             {
-                System.out.println("Load");
+                menuBar.startLoad();
                 break;
             }
         }

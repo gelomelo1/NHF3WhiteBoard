@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import uiholders.Menu;
 
-public class SaveMenu extends JFrame {
+public class SaveMenu extends FrameMenus {
     
     private JTextField name;
     private JTextField desciption;
@@ -20,11 +20,8 @@ public class SaveMenu extends JFrame {
 
     public SaveMenu(MenuBar menuBar)
     {
-        super("Save");
+        super("Save", menuBar.getJF(), 400, 200);
         this.menuBar = menuBar;
-        this.menuBar.turnOffMainFrame();
-        setSize(400, 200);
-        setVisible(true);
         JPanel textPanel = new JPanel();
         JPanel buttonPanel = new JPanel();
         add(textPanel, BorderLayout.CENTER);
@@ -42,7 +39,7 @@ public class SaveMenu extends JFrame {
         desciption = new JTextField();
         textPanel.add(desciption);
         JButton button = new JButton("Save");
-        button.addActionListener(e -> {if(checkSaveRules()) { menuBar.saveObject(name.getText(), desciption.getText(), true); menuBar.turnOnMainFrame(); dispose();} });
+        button.addActionListener(e -> {if(checkSaveRules()) { menuBar.saveObject(name.getText(), desciption.getText(), true); dispose();} });
         buttonPanel.add(button);
     }
 
