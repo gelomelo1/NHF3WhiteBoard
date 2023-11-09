@@ -194,6 +194,8 @@ public class MenuBar extends JMenuBar {
     public void delete(SaveContainer container)
     {
         String name = container.getName();
+        if(fileName.getText().equals(name))
+        changeTexts("", "");
         File folder = Paths.get("").toAbsolutePath().resolve(Menu.getBoardsFolder() + "\\" + name).toFile();
         File[] files = folder.listFiles();
         for (File file : files) {

@@ -1,30 +1,30 @@
 # Summary
 
-Date : 2023-11-03 23:46:50
+Date : 2023-11-09 20:14:46
 
 Directory e:\\Homework\\Programozás\\Java\\NHF3WhiteBoard\\src
 
-Total : 37 files,  1562 codes, 11 comments, 342 blanks, all 1915 lines
+Total : 45 files,  2385 codes, 10 comments, 446 blanks, all 2841 lines
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| Java | 37 | 1,562 | 11 | 342 | 1,915 |
+| Java | 45 | 2,385 | 10 | 446 | 2,841 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 37 | 1,562 | 11 | 342 | 1,915 |
+| . | 45 | 2,385 | 10 | 446 | 2,841 |
 | . (Files) | 1 | 6 | 0 | 2 | 8 |
-| additions | 6 | 145 | 1 | 36 | 182 |
-| canvasmodes | 5 | 189 | 0 | 48 | 237 |
-| containers | 3 | 121 | 0 | 31 | 152 |
+| additions | 8 | 251 | 1 | 53 | 305 |
+| canvasmodes | 5 | 229 | 0 | 47 | 276 |
+| containers | 4 | 188 | 0 | 46 | 234 |
 | controllers | 1 | 36 | 1 | 8 | 45 |
-| fileios | 1 | 57 | 0 | 9 | 66 |
-| listeners | 9 | 227 | 0 | 73 | 300 |
-| panels | 10 | 726 | 6 | 124 | 856 |
-| uiholders | 1 | 55 | 3 | 11 | 69 |
+| fileios | 1 | 86 | 0 | 12 | 98 |
+| listeners | 10 | 264 | 0 | 82 | 346 |
+| panels | 14 | 1,210 | 5 | 176 | 1,391 |
+| uiholders | 1 | 115 | 3 | 20 | 138 |
 
 Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

@@ -1,8 +1,8 @@
 # Diff Details
 
-Date : 2023-11-03 23:45:55
+Date : 2023-11-09 20:14:46
 
-Directory e:\\Homework\\Programozás\\Java\\NHF3WhiteBoard
+Directory e:\\Homework\\Programozás\\Java\\NHF3WhiteBoard\\src
 
 Total : 0 files,  0 codes, 0 comments, 0 blanks, all 0 lines
 
