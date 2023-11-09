@@ -86,16 +86,23 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
         }
     }
 
-    private boolean valueIsValid(int value, boolean isHorizontal)
+    private boolean valueIsValid(int value, boolean isHorizontal, boolean isPosition)
     {
+        int max;
         if(isHorizontal)
         {
-            if(value >= 0 && value <= getCanvas().getMaxWidth())
+            max = getCanvas().getMaxWidth();
+            if(isPosition)
+            max -= getCanvas().getSelectedImage().getWidth();
+            if(value >= 0 && value <= max)
             return true;
         }
         else
         {
-            if(value >= 0 && value <= getCanvas().getMaxHeight())
+            max = getCanvas().getMaxHeight();
+            if(isPosition)
+            max -= getCanvas().getSelectedImage().getHeight();
+            if(value >= 0 && value <= max)
             return true;
         }
         return false;
@@ -114,7 +121,7 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
         {
             point.x = originalPos.x + originalPos.width / 2 +  directions[i][0];
             point.y = originalPos.y + originalPos.height / 2 + directions[i][1];
-            if(valueIsValid(point.x, true) && valueIsValid(point.y, false))
+            if(valueIsValid(point.x, true, true) && valueIsValid(point.y, false, true))
                 break;
         }
         CanvasImage image = getCanvas().addImage(point, path);
@@ -132,25 +139,31 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
         if(document == posX.getDocument())
         {
             value = Integer.parseInt(posX.getText());
-            if(valueIsValid(value, true))
+            if(valueIsValid(value, true, true))
             rectangle.x = value;
         }
         else if(document == width.getDocument())
         {
             value = Integer.parseInt(width.getText());
-            if(valueIsValid(value, true))
+            int offset = 0;
+            if(value >= 0)
+            offset = rectangle.x;
+            if(valueIsValid(value + offset, true, false))
             rectangle.width = value;
         }
         else if(document == posY.getDocument())
         {
             value = Integer.parseInt(posY.getText());
-            if(valueIsValid(value, false))
+            if(valueIsValid(value, false, true))
             rectangle.y = value;
         }
         else if(document == height.getDocument())
         {
             value = Integer.parseInt(height.getText());
-            if(valueIsValid(value, false))
+            int offset = 0;
+            if(value >= 0)
+            offset = rectangle.y;
+            if(valueIsValid(value + offset, false, false))
             rectangle.height = value;
         }
         getCanvas().getSelectedImage().setBounds(rectangle);

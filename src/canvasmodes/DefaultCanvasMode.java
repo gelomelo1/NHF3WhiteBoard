@@ -42,7 +42,13 @@ public class DefaultCanvasMode {
 
     public void Move(Point point)
     {
-        canvas.setLocation(Double.valueOf(canvas.getX() + point.getX()).intValue(), Double.valueOf( canvas.getY() + point.getY()).intValue());
+        int x = canvas.getX();
+        int y = canvas.getY();
+        if(Double.valueOf(canvas.getX() + point.getX()).intValue() <= 0 && Double.valueOf(canvas.getX() + point.getX()).intValue() >= -canvas.getMaxWidth() + canvas.getCanvasLayout().getWidth())
+        x = Double.valueOf(canvas.getX() + point.getX()).intValue();
+        if(Double.valueOf( canvas.getY() + point.getY()).intValue() <= 0 && Double.valueOf( canvas.getY() + point.getY()).intValue() >= -canvas.getMaxHeight() + canvas.getCanvasLayout().getHeight())
+        y = Double.valueOf( canvas.getY() + point.getY()).intValue();
+        canvas.setLocation(x, y);
     }
 
     public void update()

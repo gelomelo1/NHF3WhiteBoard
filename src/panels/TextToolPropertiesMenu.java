@@ -73,16 +73,23 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
         }
     }
 
-    private boolean valueIsValid(int value, boolean isHorizontal)
+    private boolean valueIsValid(int value, boolean isHorizontal, boolean isPosition)
     {
+        int max;
         if(isHorizontal)
         {
-            if(value >= 0 && value <= getCanvas().getMaxWidth())
+            max = getCanvas().getMaxWidth();
+            if(isPosition)
+            max -= getCanvas().getSelectedText().getWidth();
+            if(value >= 0 && value <= max)
             return true;
         }
         else
         {
-            if(value >= 0 && value <= getCanvas().getMaxHeight())
+            max = getCanvas().getMaxHeight();
+            if(isPosition)
+            max -= getCanvas().getSelectedText().getHeight();
+            if(value >= 0 && value <= max)
             return true;
         }
         return false;
@@ -100,32 +107,38 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
         }
         else
         {
-        Rectangle rectangle = getCanvas().getSelectedText().getBounds();
-        if(document == posX.getDocument())
-        {
-            value = Integer.parseInt(posX.getText());
-            if(valueIsValid(value, true))
-            rectangle.x = value;
-        }
-        else if(document == width.getDocument())
-        {
-            value = Integer.parseInt(width.getText());
-            if(valueIsValid(value, true))
-            rectangle.width = value;
-        }
-        else if(document == posY.getDocument())
-        {
-            value = Integer.parseInt(posY.getText());
-            if(valueIsValid(value, false))
-            rectangle.y = value;
-        }
-        else if(document == height.getDocument())
-        {
-            value = Integer.parseInt(height.getText());
-            if(valueIsValid(value, false))
-            rectangle.height = value;
-        }
-        getCanvas().getSelectedText().setBounds(rectangle);
+            Rectangle rectangle = getCanvas().getSelectedText().getBounds();
+            if(document == posX.getDocument())
+            {
+                value = Integer.parseInt(posX.getText());
+                if(valueIsValid(value, true, true))
+                rectangle.x = value;
+            }
+            else if(document == width.getDocument())
+            {
+                value = Integer.parseInt(width.getText());
+                int offset = 0;
+                if(value >= 0)
+                offset = rectangle.x;
+                if(valueIsValid(value + offset, true, false))
+                rectangle.width = value;
+            }
+            else if(document == posY.getDocument())
+            {
+                value = Integer.parseInt(posY.getText());
+                if(valueIsValid(value, false, true))
+                rectangle.y = value;
+            }
+            else if(document == height.getDocument())
+            {
+                value = Integer.parseInt(height.getText());
+                int offset = 0;
+                if(value >= 0)
+                offset = rectangle.y;
+                if(valueIsValid(value + offset, false, false))
+                rectangle.height = value;
+            }
+            getCanvas().getSelectedText().setBounds(rectangle);
         }
     }
     catch(NumberFormatException e)

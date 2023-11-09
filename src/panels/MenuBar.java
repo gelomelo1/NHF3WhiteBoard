@@ -1,5 +1,6 @@
 package panels;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -52,9 +53,13 @@ public class MenuBar extends JMenuBar {
         save.add(fileMenuItem);
         menuPoints.add(save);
         menuPoints.add(new FileMenu("Load", this, MenuOperation.Load));
+        menuPoints.add(new FileMenu("Delete", this, MenuOperation.Delete));
+        menuPoints.add(new FileMenu("Help", this, MenuOperation.Help));
         add(menuPoints.get(0));
         add(menuPoints.get(1));
         add(menuPoints.get(2));
+        add(menuPoints.get(3));
+        add(menuPoints.get(4));
         menuBarListener = new MenuBarListener(menuPoints, menuItems);
         for (FileMenu menu : menuPoints) {
             menu.addMouseListener(menuBarListener);
@@ -85,7 +90,7 @@ public class MenuBar extends JMenuBar {
         String[] extensions = {"png", "jpg", "jpeg"};
         for (File file : images) {
             if(FileHandler.validExtension((source + "\\" + file.getName()).toString(), extensions))
-                FileHandler.copyFile((source + "\\" + file.getName()).toString(), destination);
+                FileHandler.copyFile((source + "\\" + file.getName()).toString(), destination, null);
         }
     }
 
@@ -121,9 +126,9 @@ public class MenuBar extends JMenuBar {
         FileHandler.saveObject(Paths.get("").toAbsolutePath().resolve(Menu.getBoardsFolder() + "\\" + name + "\\" + name + ".ser").toString(), pack);
         copyImages((Paths.get("").toAbsolutePath().resolve(Menu.getTempFolder()).toString()) ,Menu.getBoardsFolder() + "\\" + name);
         changeTexts(name, description);
-        JOptionPane.showMessageDialog(null, "Board saved successfully!", "Error", JOptionPane.INFORMATION_MESSAGE);   
+        JOptionPane.showMessageDialog(null, "Board saved successfully!", "Successful Save", JOptionPane.INFORMATION_MESSAGE);   
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error occured during save!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error occured during save!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -152,7 +157,7 @@ public class MenuBar extends JMenuBar {
             } catch (Exception e) {
                 if(!showed)
                 {
-                JOptionPane.showMessageDialog(null, "Failed to load all boards!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Failed to load all boards!", "Warning", JOptionPane.WARNING_MESSAGE);
                 showed = true;
                 }
             }
@@ -169,5 +174,31 @@ public class MenuBar extends JMenuBar {
             changeTexts(container.getName(), container.getDescription());
             canvas.loadCanvas(container);
         }
+    }
+
+    public void help()
+    {
+        try {
+        File file = new File(Menu.getResourceFiles().get("UserDocumentation"));
+        Desktop.getDesktop().open(file);   
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Cannot open the file!", "Warning",  JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public void startDelete()
+    {
+        DeleteMenu deleteMenu = new DeleteMenu(this, loadObjects());
+    }
+
+    public void delete(SaveContainer container)
+    {
+        String name = container.getName();
+        File folder = Paths.get("").toAbsolutePath().resolve(Menu.getBoardsFolder() + "\\" + name).toFile();
+        File[] files = folder.listFiles();
+        for (File file : files) {
+            FileHandler.deleteFile(file.getAbsolutePath());
+        }
+        FileHandler.deleteFile(folder.getAbsolutePath());
     }
 }

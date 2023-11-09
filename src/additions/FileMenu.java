@@ -2,13 +2,16 @@ package additions;
 
 import javax.swing.JMenu;
 import panels.MenuBar;
+import uiholders.Menu;
 
 public class FileMenu extends JMenu {
 
     public enum MenuOperation
     {
         New,
-        Load
+        Load,
+        Delete,
+        Help
     }
 
     private MenuOperation operation;
@@ -29,12 +32,24 @@ public class FileMenu extends JMenu {
         {
             case New:
             {
+                if(Menu.showMoveOnConfirm() == 0)
                 menuBar.createNew();
                 break;
             }
             case Load:
             {
+                if(Menu.showMoveOnConfirm() == 0)
                 menuBar.startLoad();
+                break;
+            }
+            case Delete:
+            {
+                menuBar.startDelete();
+                break;
+            }
+            case Help:
+            {
+                menuBar.help();
                 break;
             }
         }

@@ -1,6 +1,11 @@
 package panels;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class MoveToolPropertiesMenu extends ToolPropertiesMenu {
 
@@ -14,13 +19,16 @@ public class MoveToolPropertiesMenu extends ToolPropertiesMenu {
 
     @Override
     protected void initMenu() {
-        add(new JLabel("Mouse Position:"));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        panel.add(new JLabel("Mouse Position:"));
         posX = new JLabel();
+        panel.add(posX);
         setPosX(0);
         posY = new JLabel();
+        panel.add(posY);
         setPosY(0);
-        add(posX);
-        add(posY);
+        add(panel);
     }
 
     @Override

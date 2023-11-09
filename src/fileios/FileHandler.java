@@ -46,12 +46,15 @@ public class FileHandler {
         return value;
     }
 
-    public static boolean copyFile(String source, String destination)
+    public static boolean copyFile(String source, String destination, String rename)
     {
         try {
         String selectedFolder = source.substring(0, source.lastIndexOf("\\"));
-        String name = source.substring(source.lastIndexOf("\\") + 1);
+        String name;
+        name = source.substring(source.lastIndexOf("\\") + 1);
         Path sourcePath = Paths.get(selectedFolder, name);
+        if(rename != null)
+        name = rename;
         Path destinationPath = Paths.get(destination, name);
         Files.copy(sourcePath, destinationPath);
         return true;

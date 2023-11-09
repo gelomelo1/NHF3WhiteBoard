@@ -1,5 +1,7 @@
 package additions;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import canvasmodes.DefaultCanvasMode;
 import canvasmodes.DrawCanvasMode;
@@ -28,11 +30,20 @@ public enum ModesChanger
 private ToolButtonsMenu toolButtonsMenu;
 private ModesChanger modesChanger;
 
-public ModeChangerButton(String text,ToolButtonsMenu toolButtonsMenu, ModesChanger modesChanger)
+public ModeChangerButton(String path,ToolButtonsMenu toolButtonsMenu, ModesChanger modesChanger)
 {
-    super(text);
     this.toolButtonsMenu = toolButtonsMenu;
     this.modesChanger = modesChanger;
+    setContentAreaFilled(false);
+    setButtonImage(new ImageIcon(path));
+}
+
+protected void setButtonImage(ImageIcon ic)
+{
+    Image img = ic.getImage();
+    Image newimg = img.getScaledInstance(50, 50, Image.SCALE_DEFAULT) ;  
+    ic = new ImageIcon( newimg );
+    setIcon(ic);
 }
 
 public void change()

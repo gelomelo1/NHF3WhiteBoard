@@ -69,6 +69,8 @@ public class Canvas extends JPanel {
     private void initializeLoadedData()
     {
         removeAll();
+        selectedImage = null;
+        selectedText = null;
         for (CanvasImage canvasImage : images) {
             canvasImage.loadImage();
             add(canvasImage);
@@ -240,6 +242,11 @@ public class Canvas extends JPanel {
     public int getMaxHeight()
     {
         return maxHeight;
+    }
+
+    public JScrollPane getCanvasLayout()
+    {
+        return canvasLayout;
     }
 
     public void newCanvas()

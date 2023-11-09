@@ -1,11 +1,13 @@
 package panels;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import additions.ModeChangerButton;
 import additions.ModeChangerButton.ModesChanger;
 import controllers.ModesController;
 import listeners.ModeChangerButtonListener;
+import uiholders.Menu;
 
 public class ToolButtonsMenu extends JPanel {
 
@@ -26,15 +28,15 @@ public class ToolButtonsMenu extends JPanel {
     private void initButtons()
     {
         ModeChangerButtonListener modeChangerButtonListener = new ModeChangerButtonListener();
-        ModeChangerButton modeChangerButton = new ModeChangerButton("Move", this, ModesChanger.Move);
+        ModeChangerButton modeChangerButton = new ModeChangerButton(Menu.getResourceFiles().get("Move"), this, ModesChanger.Move);
         assignButton(modeChangerButton, modeChangerButtonListener);
-        modeChangerButton = new ModeChangerButton("Draw", this, ModesChanger.Draw);
+        modeChangerButton = new ModeChangerButton(Menu.getResourceFiles().get("Draw"), this, ModesChanger.Draw);
         assignButton(modeChangerButton, modeChangerButtonListener);
-        modeChangerButton = new ModeChangerButton("Erase", this, ModesChanger.Erase);
+        modeChangerButton = new ModeChangerButton(Menu.getResourceFiles().get("Erase"), this, ModesChanger.Erase);
         assignButton(modeChangerButton, modeChangerButtonListener);
-        modeChangerButton = new ModeChangerButton("Text", this, ModesChanger.Text);
+        modeChangerButton = new ModeChangerButton(Menu.getResourceFiles().get("Text"), this, ModesChanger.Text);
         assignButton(modeChangerButton, modeChangerButtonListener);
-        modeChangerButton = new ModeChangerButton("Image", this, ModesChanger.Image);
+        modeChangerButton = new ModeChangerButton(Menu.getResourceFiles().get("Image"), this, ModesChanger.Image);
         assignButton(modeChangerButton, modeChangerButtonListener);
     }
 
