@@ -1,3 +1,56 @@
+/**
+ * Függvények:
+ * 
+ * Menu():
+ * A Menu osztály konstruktora inicializálja a működéshez szükséges változókat.
+ * 
+ * initApp():
+ *     A függvény létrehoz egy JFrame objektumot a "Whiteboard" címmel,
+ *     beállítja a kilépési működést és a méretet, majd hozzáad egy ablakfigyelőt.
+ *     Az initFolders() függvényt is meghívja.
+ * 
+ * initPanels():
+ *     Inicializálja a modesController-t és a menuBar-t a JFrame és a canvas referenciajával.
+ * 
+ * initFolders():
+ *     Ellenőrzi a szükséges mappák létezését és sikeres létrehozását.
+ *     Ha valamelyik létrehozás vagy ellenőrzés sikertelen, hibaüzenet jelenik meg, és kilép a program.
+ *     A deleteTempFolder() függvényt is meghívja.
+ * 
+ * checkResourceFiles():
+ *     Ellenőrzi, hogy az összes szükséges erőforrásfájl létezik-e a megadott elérési útvonalakon.
+ *     Ha bármelyik hiányzik, false-szal tér vissza, különben true-val.
+ * 
+ * addPathToMap(String key, String folder, String extension):
+ *     Hozzáad egy kulcs-érték párt a resourceFiles térképhez, ahol a kulcs a fájl neve, az érték pedig az elérési útvonal.
+ * 
+ * windowClosing(WindowEvent e):
+ *     Ablak bezárásakor meghívódó eseménykezelő. Megjelenít egy megerősítő párbeszédpanelt,
+ *     amely megkérdezi a felhasználót, hogy biztosan folytatja-e a kilépést mentés nélkül.
+ *     Ha a válasz igen, akkor az ablak bezáródik.
+ * 
+ * deleteTempFolder():
+ *     Törli a temporális mappát és annak tartalmát.
+ * 
+ * showMoveOnConfirm():
+ *     Megjelenít egy megerősítő párbeszédpanelt a "Continue" címmel, ami megkérdezi a felhasználót,
+ *     hogy biztosan folytatja-e a mentés nélküli kilépést. Visszaadja a felhasználó válaszát.
+ * 
+ * getTempFolder():
+ *     Visszaadja a temporális mappa elérési útvonalát.
+ * 
+ * getBoardsFolder():
+ *     Visszaadja a "Boards" mappa elérési útvonalát.
+ * 
+ * getResourcesFolder():
+ *     Visszaadja a "Resources" mappa elérési útvonalát.
+ * 
+ * getResourceFiles():
+ *     Visszaadja a resourceFiles térképet, amely tartalmazza az összes szükséges erőforrásfájl elérési útvonalát.
+ * 
+ * Exit():
+ *     Kilép a programból.
+ */
 package uiholders;
 
 import java.awt.event.WindowAdapter;
@@ -13,7 +66,6 @@ import fileios.FileHandler;
 import panels.MenuBar;
 
 public class Menu {
-    //Some base attributes
     private static int width = 1280;
     private static int heigth = 960;
     private static String tempFolder = "Temp";
@@ -33,11 +85,8 @@ public class Menu {
         addPathToMap("UserDocumentation", path, "pdf");
     }
 
-    //JFrames and Panels for the layout
     private JFrame jf;
     private JMenuBar menuBar;
-
-    //Controller
     private ModesController modesController;
 
     public Menu()

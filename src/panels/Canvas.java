@@ -1,3 +1,100 @@
+/**
+* Függvények:
+ * 
+ * Canvas(JFrame jf):
+ *     A Canvas osztály konstruktora, inicializálja a komponenseket és a rajzterületet.
+ * 
+ * initCanvas(JFrame jf):
+ *     Inicializálja a rajzterület beállításait, mint a méret és a görgetősávok.
+ * 
+ * initComp(JFrame jf):
+ *     Inicializálja a komponenseket, mint a görgetősávot, a háttért és a rajzeszközöket.
+ * 
+ * initializeLoadedData():
+ *     Betölti a képeket, szövegeket, és görbéket a tárolóból, inicializálva a megjelenítésüket.
+ * 
+ * drawCurves(Graphics2D g2):
+ *     Kirajzolja a görbék vonalait a megadott Graphics2D objektum segítségével.
+ * 
+ * paintComponent(Graphics g):
+ *     Az osztály JPanel ősosztályának paintComponent() metódusát felülírva kirajzolja
+ *     a háttért és a görbéket a rajzterületre.
+ * 
+ * setMouseListener(MouseAdapter mouseListener):
+ *     Beállítja az egér eseménykezelőt a Canvas osztályhoz.
+ * 
+ * updateMenu():
+ *     Frissíti a toolPropertiesMenu-t a kijelölt objektumok tulajdonságaival.
+ * 
+ * addCurve(Drawing curve):
+ *     Hozzáad egy görbét a curves listához.
+ * 
+ * setMousePos(Point point):
+ *     Beállítja az egér pozícióját.
+ * 
+ * setToolPropertiesMenu(ToolPropertiesMenu toolPropertiesMenu):
+ *     Beállítja a toolPropertiesMenu-t.
+ * 
+ * getMousePos():
+ *     Visszaadja az egér pozícióját.
+ * 
+ * getBrush():
+ *     Visszaadja a rajzecsetet.
+ * 
+ * setBrushColor(Color c):
+ *     Beállítja a rajzecset színét.
+ * 
+ * setStroke(int stroke):
+ *     Beállítja a rajzecset vonalvastagságát.
+ * 
+ * addText(Point point):
+ *     Hozzáad egy szövegobjektumot a rajzterülethez a megadott pozícióval.
+ * 
+ * addImage(Point point, String path):
+ *     Hozzáad egy képobjektumot a rajzterülethez a megadott pozícióval és fájlútvonallal.
+ * 
+ * getCurves():
+ *     Visszaadja a görbék listáját.
+ * 
+ * getTexts():
+ *     Visszaadja a szövegek listáját.
+ * 
+ * getImages():
+ *     Visszaadja a képek listáját.
+ * 
+ * getCanvasObjects():
+ *     Visszaadja az összes rajzobjektumot tartalmazó listát.
+ * 
+ * getSelectedText():
+ *     Visszaadja a kijelölt szövegobjektumot.
+ * 
+ * setSelectedText(CanvasText selectedText):
+ *     Beállítja a kijelölt szövegobjektumot.
+ * 
+ * getSelectedImage():
+ *     Visszaadja a kijelölt képobjektumot.
+ * 
+ * setSelectedImage(CanvasImage selectedImage):
+ *     Beállítja a kijelölt képobjektumot.
+ * 
+ * getMaxWidth():
+ *     Visszaadja a maximális szélességet.
+ * 
+ * getMaxHeight():
+ *     Visszaadja a maximális magasságot.
+ * 
+ * getCanvasLayout():
+ *     Visszaadja a görgetősávot.
+ * 
+ * newCanvas():
+ *     Inicializálja újra a rajzterületet, törlve az eddigi objektumokat.
+ * 
+ * saveCanvas():
+ *     Létrehoz egy SaveContainer objektumot a rajzterület állapotának mentéséhez.
+ * 
+ * loadCanvas(SaveContainer container):
+ *     Betölti a rajzterület állapotát egy SaveContainer objektumból.
+ */
 package panels;
 
 import java.awt.BasicStroke;

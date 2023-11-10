@@ -1,3 +1,32 @@
+/**
+ * Függvények:
+ * 
+ * SaveContainer(ArrayList<CanvasImage> images, ArrayList<CanvasText> texts, ArrayList<Drawing> drawings, String name, String description):
+ *     A SaveContainer osztály konstruktora. Beállítja az objektumok listáit és a metaadatokat.
+ * 
+ * toString():
+ *     Visszaadja a konténer nevét.
+ * 
+ * getImages():
+ *     Visszaadja a menteni kívánt CanvasImage objektumok listáját.
+ * 
+ * getTexts():
+ *     Visszaadja a menteni kívánt CanvasText objektumok listáját.
+ * 
+ * getDrawings():
+ *     Visszaadja a menteni kívánt Drawing objektumok listáját.
+ * 
+ * getName():
+ *     Visszaadja a konténer nevét.
+ * 
+ * getDescription():
+ *     Visszaadja a konténer leírását.
+ * 
+ * changeImagesPath(String folder):
+ *     Változtatja az összes CanvasImage objektum elérési útját a megadott könyvtárra.
+ * 
+ */
+
 package containers;
 
 import java.io.Serializable;

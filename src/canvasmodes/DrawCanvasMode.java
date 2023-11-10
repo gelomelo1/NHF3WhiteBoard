@@ -1,3 +1,16 @@
+/**
+ * Függvények:
+ * 
+ * DrawCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu):
+ *     A DrawCanvasMode osztály konstruktora. Beállítja a rajzolási mód alapértelmezett tulajdonságait.
+ * 
+ * StartNewCurve(Point point):
+ *     Új vonal (kurva) kezdése a megadott pontról.
+ * 
+ * AddPoint(Point point):
+ *     Hozzáad egy pontot a jelenlegi vonalhoz.
+ * 
+ */
 package canvasmodes;
 
 import listeners.DrawCanvasModeListener;

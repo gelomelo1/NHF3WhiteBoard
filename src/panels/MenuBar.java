@@ -1,3 +1,52 @@
+/**
+ * Függvények:
+ * 
+ * MenuBar(JFrame jf, Canvas canvas):
+ *     A MenuBar osztály konstruktora. Inicializálja a menüpontokat, menüelemeket, szövegmezőket és eseménykezelőket.
+ * 
+ * initMenuPoints():
+ *     Inicializálja a menüpontokat és menüelemeket, majd hozzáadja azokat a menüsorhoz. Beállítja az eseménykezelőket.
+ * 
+ * initMenuTexts():
+ *     Inicializálja a szövegmezőket, hozzáadja azokat a menüsorhoz, és beállítja azok szerkeszthetőségét.
+ * 
+ * copyImages(String source, String destination):
+ *     Másolja azokat a képeket a forrás mappából a cél mappába, amelyek megfelelnek a megadott kiterjesztésekre.
+ * 
+ * getJF():
+ *     Visszaadja a JFrame-t, amelyhez a MenuBar tartozik.
+ * 
+ * changeTexts(String name, String description):
+ *     Beállítja a szövegmezők szövegét a megadott névre és leírásra.
+ * 
+ * Save(boolean copy):
+ *     Elindítja a mentés folyamatot. Ha a fájlnév üres vagy a másolás opció be van kapcsolva, megnyitja a SaveMenu-t, különben elmenti az állapotot.
+ * 
+ * saveObject(String name, String description, boolean copy):
+ *     Elmenti a tábla állapotát a megadott név és leírás alapján. Ha a másolás opció be van kapcsolva, másolja a fájlokat a Temp mappából a Boards mappába.
+ * 
+ * createNew():
+ *     Létrehoz egy új táblát, törli a Temp mappát és törli a szövegmezők tartalmát.
+ * 
+ * startLoad():
+ *     Elindítja a betöltés folyamatát, megnyitja a LoadMenu-t.
+ * 
+ * loadObjects():
+ *     Betölti az elmentett táblák listáját a Boards mappából.
+ * 
+ * load(SaveContainer container):
+ *     Betölti a kiválasztott tábla állapotát a megadott SaveContainer alapján.
+ * 
+ * help():
+ *     Megnyitja a felhasználói dokumentációt.
+ * 
+ * startDelete():
+ *     Elindítja a törlés folyamatát, megnyitja a DeleteMenu-t.
+ * 
+ * delete(SaveContainer container):
+ *     Törli a megadott táblát a Boards mappából.
+ * 
+ */
 package panels;
 
 import java.awt.Desktop;

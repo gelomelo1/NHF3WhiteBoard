@@ -1,3 +1,19 @@
+/**
+ * Függvények:
+ * 
+ * FrameMenus(String name, JFrame mainFrame, int width, int height):
+ *     Az abstract FrameMenus osztály konstruktora. Inicializálja az ablakot a megadott paraméterek alapján,
+ *     és beállítja a főablak letiltását. Hozzáad egy ablakkezelőt az ablak bezárásához.
+ * 
+ * FrameMenusListener:
+ *     Az ablakkezelő osztály, amely a FrameMenus osztályhoz tartozik.
+ * 
+ * windowClosed(WindowEvent e):
+ *     Az ablak bezárásakor hívódik meg. Engedélyezi a főablakot.
+ * 
+ * windowClosing(WindowEvent e):
+ *     Az ablak bezárásakor hívódik meg. Engedélyezi a főablakot.
+ */
 package panels;
 
 import java.awt.event.WindowAdapter;

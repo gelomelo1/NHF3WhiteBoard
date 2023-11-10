@@ -1,3 +1,13 @@
+/**
+ * Függvények:
+ * 
+ * EraseCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu):
+ *     Az EraseCanvasMode osztály konstruktora. Beállítja a törlési mód alapértelmezett tulajdonságait.
+ * 
+ * erase(Point point):
+ *     A megadott pontra kattintva eltávolítja a kijelölt objektumot a vászonról.
+ * 
+ */
 package canvasmodes;
 
 import java.awt.Point;

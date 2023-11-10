@@ -1,3 +1,25 @@
+/**
+ * Függvények:
+ * 
+ * ImageCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu):
+ *     Az ImageCanvasMode osztály konstruktora. Beállítja a képobjektumokat kezelő mód alapértelmezett tulajdonságait.
+ * 
+ * placeImage(Point point):
+ *     Elhelyezi a képet a megadott pontra. Ellenőrzi az adatokat, másolja a fájlt a temporális mappába, majd hozzáadja a képet a vászonhoz.
+ * 
+ * checkImageData():
+ *     Ellenőrzi a kép elérési útját és a fájlnév kiterjesztését, majd a felhasználótól kéri be az adatokat.
+ * 
+ * checkRename(String path):
+ *     Ellenőrzi, hogy a fájlnév ütközik-e már a temporális mappában lévő fájlokkal, és ha igen, akkor módosítja a nevet.
+ * 
+ * setImageFocus(CanvasImage image):
+ *     Beállítja a megadott képet a kijelölt képnek a vásznon.
+ * 
+ * imageClicked(Point point):
+ *     Ellenőrzi, hogy a megadott ponton lévő képobjektumra kattintottak-e, és visszaadja a talált objektumot.
+ * 
+ */
 package canvasmodes;
 
 import java.awt.Point;

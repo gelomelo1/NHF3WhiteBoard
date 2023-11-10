@@ -1,3 +1,17 @@
+/**
+ * Függvények:
+ * 
+ * DrawCanvasModeListener(DrawCanvasMode drawCanvasMode):
+ *     Az osztály konstruktora, inicializálja az egérfigyelőt a rajz vászon móddal.
+ * 
+ * mousePressed(MouseEvent e):
+ *     Az egér gombnyomás eseményére meghívódó metódus. Az egér bal gombjának lenyomásakor indít egy új vonalat a rajz vászon módban.
+ * 
+ * mouseDragged(MouseEvent e):
+ *     Az egér húzás eseményére meghívódó metódus. Az egér jobb gombjának lenyomása esetén hívja az ősosztály mouseDragged metódusát,
+ *     bal gomb lenyomása esetén hozzáad egy pontot a rajz vászon módban.
+ * 
+ */
 package listeners;
 
 import java.awt.event.MouseEvent;

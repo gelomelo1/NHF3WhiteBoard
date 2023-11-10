@@ -1,3 +1,18 @@
+/**
+ * Függvények:
+ * 
+ * mouseClicked(MouseEvent e):
+ *     Az egérgomb lenyomásakor meghívódó metódus. Helyez egy szöveget a megadott ponton,
+ *     majd frissíti a mód állapotát az update() metódussal.
+ * 
+ * mouseDragged(MouseEvent e):
+ *     Az egér húzása közben meghívódó metódus. Az egérjobb gomb lenyomásakor a szülő osztály
+ *     metódusát hívja meg, különben nem történik semmi.
+ * 
+ * mouseMoved(MouseEvent e):
+ *     Az egér mozgása közben meghívódó metódus. Nem végez semmilyen műveletet.
+ * 
+ */
 package listeners;
 
 import java.awt.event.MouseEvent;

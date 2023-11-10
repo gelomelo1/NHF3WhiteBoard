@@ -1,3 +1,10 @@
+/**
+ * Függvények:
+ * 
+ * drawBackground(Graphics2D g, int width, int height):
+ *     Rajzolja a háttérköröket a megadott grafikai objektumra a szélesség és magasság alapján.
+ * 
+ */
 package additions;
 
 import java.awt.Color;

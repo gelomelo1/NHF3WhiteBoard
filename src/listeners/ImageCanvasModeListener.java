@@ -1,3 +1,20 @@
+/**
+ * Függvények:
+ * 
+ * ImageCanvasModeListener(ImageCanvasMode imageCanvasMode):
+ *     Az osztály konstruktora, inicializálja az egérfigyelőt a kép vászon móddal.
+ * 
+ * mouseClicked(MouseEvent e):
+ *     Az egér kattintás eseményére meghívódó metódus. Az egér bal gombjának lenyomásakor a kép vászon módban meghatározza,
+ *     hogy az egér pozíciójában található képre történt-e kattintás, és ennek megfelelően elhelyezi vagy fókuszba helyezi a képet.
+ * 
+ * mouseDragged(MouseEvent e):
+ *     Az egér húzás eseményére meghívódó metódus. Az egér jobb gombjának lenyomása esetén hívja az ősosztály mouseDragged metódusát.
+ * 
+ * mouseMoved(MouseEvent e):
+ *     Az egér mozgás eseményére meghívódó metódus. Jelenleg üres, nincs funkciója.
+ * 
+ */
 package listeners;
 
 import java.awt.event.MouseEvent;

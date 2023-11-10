@@ -1,3 +1,19 @@
+/**
+ * Függvények:
+ * 
+ * CanvasText():
+ *     A CanvasText osztály konstruktora. Beállítja a szövegobjektum alapértelmezett tulajdonságait.
+ * 
+ * isCollided(Point point):
+ *     Ellenőrzi, hogy a megadott pont ütközik-e a szövegobjektum területével.
+ * 
+ * erase(Canvas canvas):
+ *     Törli a szövegobjektumot a megadott vászonról.
+ * 
+ * changeFontSize(int size):
+ *     Megváltoztatja a szövegobjektum betűméretét a megadott méretre, ha az a megengedett tartományban van.
+ * 
+ */
 package containers;
 
 import java.awt.Font;

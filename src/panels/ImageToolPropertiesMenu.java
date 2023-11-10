@@ -1,10 +1,42 @@
+/**
+ * Függvények:
+ * 
+ * ImageToolPropertiesMenu(Canvas canvas):
+ *     Az ImageToolPropertiesMenu osztály konstruktora. Az ősosztály konstruktorát hívja meg, inicializálja a komponenseket.
+ * 
+ * initMenu():
+ *     Inicializálja az eszköztulajdonságok menüjét, mint a pozíciók és a másolás gomb.
+ * 
+ * initButton(String name, JPanel panel):
+ *     Inicializálja a gombot a megadott névvel és hozzáadja a panelhez.
+ * 
+ * initFields(String labelName, JPanel panel):
+ *     Inicializálja a szövegmezőket a megadott névvel és hozzáadja a panelhez.
+ * 
+ * getPropertyName():
+ *     Visszaadja a tulajdonságok menüjének nevét ("Image").
+ * 
+ * update():
+ *     Az ősosztály metódusának felülírása, frissíti az eszköztulajdonságokat a kiválasztott kép adataival.
+ * 
+ * valueIsValid(int value, boolean isHorizontal, boolean isPosition):
+ *     Ellenőrzi, hogy az adott érték érvényes-e a megadott tengelyen (vízszintesen vagy függőlegesen),
+ *     és ha az érték a pozícióra vonatkozik, figyelembe veszi a kiválasztott kép méretét.
+ * 
+ * copyImage():
+ *     Másol egy új képet a kiválasztott képből, a kép középpontjából kiindulva és biztonságos pozícióban.
+ * 
+ * changeValue(Document document):
+ *     Az egyszerű műveletek interfész metódusa, amely a szövegmezők értékeinek változásakor hívódik meg.
+ *     Beállítja a kiválasztott kép méreteit és pozícióját a szövegmezők értékeinek megfelelően.
+ *     Ellenőrzi az érvényességet a kép mérete és a vászon határai szerint.
+ */
 package panels;
 
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

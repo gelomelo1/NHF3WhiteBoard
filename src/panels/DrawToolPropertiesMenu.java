@@ -1,8 +1,37 @@
+/**
+ * Függvények:
+ * 
+ * DrawToolPropertiesMenu(Canvas canvas):
+ *     A DrawToolPropertiesMenu osztály konstruktora. Az ősosztály konstruktorát hívja meg, inicializálja a komponenseket.
+ * 
+ * initMenu():
+ *     Inicializálja a rajzeszköz tulajdonságainak menüjét, mint a színválasztás és a vonalvastagság.
+ * 
+ * addColorsToColorSelection():
+ *     Hozzáad színeket a colorSelection térképhez a rajzeszköz színének kiválasztásához.
+ * 
+ * addRadioButtons(String buttonText, Color backgroundColor, JPanel buttonsContainer):
+ *     Hozzáad radio gombokat a megadott háttérszínnel a menühöz.
+ * 
+ * initStrokeSlider():
+ *     Inicializálja a vonalvastagság csúszkát.
+ * 
+ * getPropertyName():
+ *     Visszaadja a menü tulajdonságainak nevét ("Draw").
+ * 
+ * update():
+ *     Az ősosztály metódusának felülírása, nincs implementáció.
+ * 
+ * execute(Object triggeredObject):
+ *     Az egyszerű műveletek interfész végrehajtása a kiválasztott objektum alapján.
+ * 
+ * getComponentName(Object triggeredObject):
+ *     Az egyszerű műveletek interfész metódusa, visszaadja a kiválasztott komponens nevét.
+ */
 package panels;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;

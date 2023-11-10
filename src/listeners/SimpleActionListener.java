@@ -1,3 +1,15 @@
+/**
+ * Függvények:
+ * 
+ * actionPerformed(ActionEvent e):
+ *     A gomb lenyomásakor meghívódó metódus. Az egyszerű műveletek végrehajtását indítja el
+ *     az execute(Object source) metóduson keresztül az esemény forrásával.
+ * 
+ * stateChanged(ChangeEvent e):
+ *     Az állapot megváltozásakor meghívódó metódus. Az egyszerű műveletek végrehajtását indítja el
+ *     az execute(Object source) metóduson keresztül az esemény forrásával.
+ * 
+ */
 package listeners;
 
 import java.awt.event.ActionEvent;

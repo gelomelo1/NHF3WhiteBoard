@@ -1,3 +1,17 @@
+/**
+ * Függvények:
+ * 
+ * LoadMenu(MenuBar menuBar, ArrayList<SaveContainer> containers):
+ *     A LoadMenu osztály konstruktora. Az ősosztály konstruktorát hívja meg, inicializálja a komponenseket.
+ * 
+ * initComponents(JPanel listPanel, JPanel buttonPanel, ArrayList<SaveContainer> containers):
+ *     Inicializálja a komponenseket, beleértve a listapanelt, a gombpanelt és a hozzájuk tartozó komponenseket.
+ *     Beállítja a gomb eseménykezelőjét a mentett állapot betöltésére.
+ * 
+ * uploadList(ArrayList<SaveContainer> containers):
+ *     Betölti az adott mentett állapotokat tartalmazó listát a JList-be és kijelöli az első elemet.
+ * 
+ */
 package panels;
 
 import java.awt.BorderLayout;
@@ -11,7 +25,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
 import containers.SaveContainer;
 
 public class LoadMenu extends FrameMenus {

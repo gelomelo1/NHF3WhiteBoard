@@ -1,3 +1,12 @@
+/**
+ * Függvények:
+ * 
+ * FileMenu(String name, MenuBar menuBar, MenuOperation operation)
+ *      A konstruktor hozzárendeli az adatokat az attribútumokhoz
+ * 
+ * operate():
+ *     Elvégzi a menüelemhez tartozó műveletet a megadott művelet típusa alapján.
+ */
 package additions;
 
 import javax.swing.JMenu;

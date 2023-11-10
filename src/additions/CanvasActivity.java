@@ -1,3 +1,12 @@
+/**
+ * Függvények:
+ * 
+ * isCollided(Point point):
+ *     Megadja, hogy a tevékenységnek ütközik-e a megadott pont.
+ * 
+ * erase(Canvas canvas):
+ *     Eltávolítja a tevékenységet a vászonról.
+ */
 package additions;
 
 import java.awt.Point;

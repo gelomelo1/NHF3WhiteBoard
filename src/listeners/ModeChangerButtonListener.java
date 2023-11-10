@@ -1,3 +1,14 @@
+/**
+ * Függvények:
+ * 
+ * actionPerformed(ActionEvent e):
+ *     Az eseményre meghívódó metódus. Megkeresi az eseményt kiváltó módváltó gombot a modeChangerButtons listában,
+ *     majd végrehajtja a gombhoz rendelt műveletet a change() metódus segítségével.
+ * 
+ * addButton(ModeChangerButton button):
+ *     Hozzáad egy módváltó gombot a modeChangerButtons listához.
+ * 
+ */
 package listeners;
 
 import java.awt.event.ActionEvent;

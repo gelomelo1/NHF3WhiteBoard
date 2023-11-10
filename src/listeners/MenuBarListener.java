@@ -1,3 +1,18 @@
+/**
+ * Függvények:
+ * 
+ * MenuBarListener(ArrayList<FileMenu> menuPoints, ArrayList<FileMenuItem> menuItems):
+ *     Az osztály konstruktora. Beállítja a menüpontokat és menüelemeket.
+ * 
+ * mouseClicked(MouseEvent e):
+ *     Az egér kattintás eseményére meghívódó metódus. Megkeresi a kattintás helyén lévő menüpontot, majd végrehajtja a hozzá
+ *     rendelt műveletet a menuPoints listában található objektumon.
+ * 
+ * actionPerformed(ActionEvent e):
+ *     Az eseményre meghívódó metódus. Megkeresi az eseményt kiváltó menüelemet, majd végrehajtja a hozzá rendelt műveletet a
+ *     menuItems listában található objektumon.
+ * 
+ */
 package listeners;
 
 import java.awt.event.ActionEvent;

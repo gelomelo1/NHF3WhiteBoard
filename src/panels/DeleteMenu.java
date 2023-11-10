@@ -1,3 +1,19 @@
+/**
+ * Függvények:
+ * 
+ * DeleteMenu(MenuBar menuBar, ArrayList<SaveContainer> containers):
+ *     A DeleteMenu osztály konstruktora. Inicializálja a komponenseket és a megjelenítendő ablakot.
+ * 
+ * initComponents(JPanel listPanel, JPanel buttonPanel, ArrayList<SaveContainer> containers):
+ *     Inicializálja a DeleteMenu komponenseit, mint a listát, gombokat és leíró mezőt.
+ * 
+ * uploadList(ArrayList<SaveContainer> containers):
+ *     Feltölti a JList-et a megadott SaveContainer objektumokkal.
+ * 
+ * confirmDelete():
+ *     Megjelenít egy megerősítő párbeszédpanelt a "Delete" címmel, ami megkérdezi a felhasználót,
+ *     hogy biztosan törölni szeretné-e a kijelölt táblát. Visszaadja a felhasználó válaszát.
+ */
 package panels;
 
 import java.awt.BorderLayout;

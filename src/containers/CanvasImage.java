@@ -1,3 +1,31 @@
+/**
+ * Függvények:
+ * 
+ * CanvasImage(String path):
+ *     A CanvasImage osztály konstruktora. Beállítja a képobjektum alapértelmezett tulajdonságait és betölti a képet a megadott elérési útról.
+ * 
+ * setBounds(Rectangle rectangle):
+ *     Beállítja a képobjektum határait a megadott téglalap alapján.
+ * 
+ * getPath():
+ *     Visszaadja a képobjektumhoz tartozó elérési utat.
+ * 
+ * setPath(String path):
+ *     Beállítja a képobjektumhoz tartozó elérési utat.
+ * 
+ * loadImage():
+ *     Betölti a képet a képobjektumhoz tartozó elérési útról.
+ * 
+ * isCollided(Point point):
+ *     Ellenőrzi, hogy a megadott pont ütközik-e a képobjektum területével.
+ * 
+ * erase(Canvas canvas):
+ *     Törli a képobjektumot a megadott vászonról.
+ * 
+ * paintComponent(Graphics g):
+ *     Kirajzolja a képet a komponensen belül.
+ * 
+ */
 package containers;
 
 import java.awt.Graphics;

@@ -1,3 +1,16 @@
+/**
+ * Függvények:
+ * 
+ * ModeChangerButton(String path, ToolButtonsMenu toolButtonsMenu, ModesChanger modesChanger):
+ *     A ModeChangerButton osztály konstruktora. Beállítja a gombhoz tartozó ikont, a tulajdonságmenüt, és a módot.
+ * 
+ * change():
+ *     Váltást kezel az osztályhoz tartozó módok között. Az aktuális módot és az eszköz tulajdonságmenüt beállítja a kiválasztott módnak megfelelően.
+ * 
+ * setButtonImage(ImageIcon ic):
+ *     Beállítja a gomb képét az ikon méretére szabva.
+ * 
+ */
 package additions;
 
 import java.awt.Image;

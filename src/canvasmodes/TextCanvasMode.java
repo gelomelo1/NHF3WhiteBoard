@@ -1,3 +1,16 @@
+/**
+ * Függvények:
+ * 
+ * TextCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu):
+ *     A TextCanvasMode osztály konstruktora. Beállítja a szövegobjektumokat kezelő mód alapértelmezett tulajdonságait.
+ * 
+ * placeText(Point point):
+ *     Létrehoz egy szövegobjektumot a megadott pont alapján, hozzáadja a vászonhoz, beállítja a szükséges tulajdonságokat, és frissíti a vásznat.
+ * 
+ * setTextFocus(CanvasText text):
+ *     Beállítja a megadott szövegobjektumot a kijelölt szövegobjektumnak a vásznon.
+ * 
+ */
 package canvasmodes;
 
 import java.awt.Point;

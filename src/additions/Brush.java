@@ -1,3 +1,28 @@
+/**
+ * Függvények:
+ * 
+ * Brush(Brush brush)
+ * Másoló konstruktora az ecsetnek
+ * 
+ * setColor(Color c):
+ *     Beállítja az ecset színét.
+ * 
+ * setStroke(BasicStroke st):
+ *     Beállítja az ecset vonalvastagságát.
+ * 
+ * getColor():
+ *     Visszaadja az ecset színét.
+ * 
+ * getStroke():
+ *     Visszaadja az ecset vonalvastagságát.
+ * 
+ * getMaxStroke():
+ *     Visszaadja az ecset maximális vonalvastagságát.
+ * 
+ * getCurrentStroke():
+ *     Visszaadja az aktuális ecset vonalvastagságát.
+ * 
+ */
 package additions;
 
 import java.awt.BasicStroke;

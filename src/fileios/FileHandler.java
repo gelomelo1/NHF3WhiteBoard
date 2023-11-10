@@ -1,3 +1,31 @@
+/**
+ * Függvények:
+ * 
+ * isFileExist(String path):
+ *     Ellenőrzi, hogy a megadott elérési úton létezik-e fájl vagy mappa.
+ *     
+ * createFolder(String path):
+ *     Létrehoz egy mappát a megadott elérési úton, ha az még nem létezik.
+ *     
+ * validExtension(String path, String[] extensions):
+ *     Ellenőrzi, hogy a fájl a megadott kiterjesztések egyike-e.
+ *     
+ * copyFile(String source, String destination, String rename):
+ *     Másolja a forrásfájlt a célmappába, opcionálisan átnevezve azt.
+ *     
+ * deleteFile(String path):
+ *     Törli a megadott fájlt vagy mappát.
+ *     
+ * saveObject(String path, Object object):
+ *     Serializálja az objektumot és menti a megadott elérési útra.
+ *     
+ * getFolderFiles(String path):
+ *     Visszaadja a megadott mappa összes fájlját.
+ *     
+ * loadObject(String path):
+ *     Betölti és deszerializálja az objektumot a megadott elérési útról.
+ * 
+ */
 package fileios;
 
 import java.io.File;

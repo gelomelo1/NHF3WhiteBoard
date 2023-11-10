@@ -1,3 +1,16 @@
+/**
+ * Függvények:
+ * 
+ * initController(Menu menu, JFrame jf):
+ *     Inicializálja a módvezérlőt a megadott menüvel és keretobjektummal.
+ * 
+ * changeMode(DefaultCanvasMode newMode, JPanel toolpropertiesMenu):
+ *     Megváltoztatja a vászon módját az új módra és a hozzá tartozó eszköztulajdonság-menüre.
+ * 
+ * getCanvas():
+ *     Visszaadja a vászon objektumot.
+ * 
+ */
 package controllers;
 
 import javax.swing.JFrame;

@@ -1,3 +1,18 @@
+/**
+ * Függvények:
+ * 
+ * ToolMenu(JFrame jf, ModesController modesController):
+ *     A ToolMenu osztály konstruktora. Inicializálja a menüt a megadott módvezérlővel, majd hozzáadja azt a megadott JFrame-hez.
+ * 
+ * initMenu(ModesController modesController):
+ *     Inicializálja a menüt a megadott módvezérlővel. Beállítja a menü elrendezését BoxLayout-ra (függőleges). Beállítja a háttérszínt és az előnyomott méretet.
+ *     Létrehozza és hozzáadja a menühöz a ToolButtonsMenu-t.
+ * 
+ * setToolPropertiesMenu(JPanel toolPropertiesMenu):
+ *     Beállítja a ToolPropertiesMenu-t a megadott panelre. Ha már volt beállítva egy ToolPropertiesMenu, eltávolítja azt a menüből, majd hozzáadja az újat.
+ *     Frissíti a menüt (revalidate).
+ * 
+ */
 package panels;
 
 import java.awt.BorderLayout;

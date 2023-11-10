@@ -1,3 +1,19 @@
+/**
+ * Függvények:
+ * 
+ * SaveMenu(MenuBar menuBar):
+ *     A SaveMenu osztály konstruktora. Meghívja az ősosztály konstruktorát, majd inicializálja a szövegmezőket és gombokat.
+ * 
+ * initComponents(JPanel textPanel, JPanel buttonPanel):
+ *     Inicializálja a szövegmezőket és a gombokat a megfelelő panelekhez. Beállítja a gomb eseménykezelőjét, hogy a megadott szabályoknak megfelelően működjön a mentés.
+ * 
+ * checkSaveRules():
+ *     Ellenőrzi a mentési szabályokat: 
+ *         - Ellenőrzi, hogy a megadott névvel már létezik-e tábla.
+ *         - Ellenőrzi, hogy a név mező ki van-e töltve.
+ *     Ha mindkét feltétel teljesül, visszatér igazzal, különben hamissal.
+ * 
+ */
 package panels;
 
 import java.awt.BorderLayout;
@@ -5,7 +21,6 @@ import java.io.File;
 import java.nio.file.Paths;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

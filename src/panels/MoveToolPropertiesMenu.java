@@ -1,7 +1,26 @@
+/**
+ * Függvények:
+ * 
+ * MoveToolPropertiesMenu(Canvas canvas):
+ *     A MoveToolPropertiesMenu osztály konstruktora. Meghívja az ősosztály konstruktorát és inicializálja a szövegmezőket.
+ * 
+ * initMenu():
+ *     Inicializálja a menüt, létrehoz egy panelt, és beállítja a panel elrendezését BoxLayout-ra. Hozzáadja a szükséges címkéket és szövegmezőket a panelhez.
+ * 
+ * getPropertyName():
+ *     Visszaadja a menü nevét: "Move".
+ * 
+ * update():
+ *     Frissíti a szövegmezők értékeit a Canvas aktuális egérpozíciójával.
+ * 
+ * setPosX(int x):
+ *     Beállítja az X koordinátát a megadott értékre és frissíti a szövegmezőt.
+ * 
+ * setPosY(int y):
+ *     Beállítja az Y koordinátát a megadott értékre és frissíti a szövegmezőt.
+ * 
+ */
 package panels;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;

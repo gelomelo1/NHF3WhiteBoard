@@ -1,3 +1,34 @@
+/**
+ * Függvények:
+ * 
+ * Drawing():
+ *     A Drawing osztály konstruktora. Inicializálja a rajzobjektumot.
+ * 
+ * setBrush(Brush brush):
+ *     Beállítja a rajzobjektum ecsetét a megadott ecsetre.
+ * 
+ * addPoint(Point point):
+ *     Hozzáad egy pontot a rajzobjektum görbéjéhez.
+ * 
+ * getColor():
+ *     Visszaadja a rajzobjektum színét.
+ * 
+ * getStroke():
+ *     Visszaadja a rajzobjektum ecsetvastagságát.
+ * 
+ * getCurve():
+ *     Visszaadja a rajzobjektum görbéjét.
+ * 
+ * initializeBrush():
+ *     Inicializálja az ecsetet a jelenlegi ecsetvastagsággal.
+ * 
+ * isCollided(Point point):
+ *     Megvizsgálja, hogy a megadott pont ütközik-e a rajzobjektum területével.
+ * 
+ * erase(Canvas canvas):
+ *     Törli a rajzobjektumot a megadott vászonról.
+ * 
+ */
 package containers;
 
 import java.util.ArrayList;

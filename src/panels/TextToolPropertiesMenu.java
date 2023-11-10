@@ -1,3 +1,33 @@
+/**
+ * Függvények:
+ * 
+ * TextToolPropertiesMenu(Canvas canvas):
+ *     A TextToolPropertiesMenu osztály konstruktora. Meghívja az ősosztály konstruktorát, majd inicializálja a szövegmezőket és a hallgatót.
+ * 
+ * initMenu():
+ *     Inicializálja a szövegmezőket és a hallgatót a megfelelő panelekhez.
+ * 
+ * initFields(String labelName, JPanel panel):
+ *     Inicializál egy szövegmezőt a megadott névvel és panellel. Hozzáad egy dokumentumhallgatót a mezőhöz, amelyet a textToolPropertiesListener kezel.
+ *     Visszaadja a létrehozott szövegmezőt.
+ * 
+ * getPropertyName():
+ *     Visszaadja az eszköz tulajdonságának nevét ("Text").
+ * 
+ * update():
+ *     Frissíti a szövegmezőket a kiválasztott szöveg adataival.
+ * 
+ * valueIsValid(int value, boolean isHorizontal, boolean isPosition):
+ *     Ellenőrzi, hogy a megadott érték érvényes-e a paraméterek alapján.
+ *     - isHorizontal: true esetén vízszintes, false esetén függőleges ellenőrzést végez.
+ *     - isPosition: true esetén a pozícióra vonatkozó ellenőrzést végez, false esetén a méretre vonatkozó ellenőrzést.
+ *     Visszaadja, hogy az érték érvényes-e vagy sem.
+ * 
+ * changeValue(Document document):
+ *     Változtatja a kiválasztott szöveg tulajdonságait a megadott dokumentum alapján. Ellenőrzi a validitást, és ha a dokumentum a betűméretet reprezentálja, 
+ *     akkor azt módosítja, különben a pozíciót és méretet változtatja meg.
+ * 
+ */
 package panels;
 
 import java.awt.GridLayout;
