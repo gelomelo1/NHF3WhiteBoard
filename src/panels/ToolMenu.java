@@ -42,7 +42,6 @@ public class ToolMenu extends JPanel {
     private void initMenu(ModesController modesController)
     {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        setBackground(Color.blue);
         setPreferredSize(new Dimension(toolMenuWidth, 0));
         toolButtonsMenu = new ToolButtonsMenu(modesController);
         add(toolButtonsMenu);
