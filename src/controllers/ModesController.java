@@ -44,10 +44,10 @@ public class ModesController {
         toolsMenu = new ToolMenu(jf, this);
     }
 
-    public void changeMode(DefaultCanvasMode newMode, JPanel toolpropertiesMenu)
+    public void changeMode(DefaultCanvasMode newMode, JPanel toolPropertiesMenu)
     {
         canvasMode = newMode;
-        toolsMenu.setToolPropertiesMenu(toolpropertiesMenu);
+        toolsMenu.setToolPropertiesMenu(toolPropertiesMenu);
     }
 
     public Canvas getCanvas()

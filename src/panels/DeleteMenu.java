@@ -32,7 +32,7 @@ import javax.swing.JTextField;
 import containers.SaveContainer;
 
 public class DeleteMenu extends FrameMenus {
-        private int width;
+    private int width;
     private int height;
     private MenuBar menuBar;
     private JList<SaveContainer> boardList;

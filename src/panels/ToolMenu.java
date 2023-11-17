@@ -39,7 +39,7 @@ public class ToolMenu extends JPanel {
 
     }
 
-    public void initMenu(ModesController modesController)
+    private void initMenu(ModesController modesController)
     {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setBackground(Color.blue);

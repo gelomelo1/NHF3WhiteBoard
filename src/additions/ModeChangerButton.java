@@ -43,7 +43,7 @@ public enum ModesChanger
 private ToolButtonsMenu toolButtonsMenu;
 private ModesChanger modesChanger;
 
-public ModeChangerButton(String path,ToolButtonsMenu toolButtonsMenu, ModesChanger modesChanger)
+public ModeChangerButton(String path, ToolButtonsMenu toolButtonsMenu, ModesChanger modesChanger)
 {
     this.toolButtonsMenu = toolButtonsMenu;
     this.modesChanger = modesChanger;
