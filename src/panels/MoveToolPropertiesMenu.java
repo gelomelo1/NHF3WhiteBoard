@@ -19,6 +19,12 @@
  * setPosY(int y):
  *     Beállítja az Y koordinátát a megadott értékre és frissíti a szövegmezőt.
  * 
+ * getPosX():
+ *     Visszaadja az egér X koordinátáját
+ * 
+ * getPosY():
+ *     Visszaadja az egér Y koordinátáját
+ * 
  */
 package panels;
 
@@ -69,6 +75,16 @@ public class MoveToolPropertiesMenu extends ToolPropertiesMenu {
     public void setPosY(int y)
     {
         posY.setText("Y: " + y);
+    }
+
+    public int getPosX()
+    {
+        return Integer.parseInt(posX.getText().substring(posX.getText().lastIndexOf(" ") + 1));
+    }
+
+    public int getPosY()
+    {
+        return Integer.parseInt(posY.getText().substring(posY.getText().lastIndexOf(" ") + 1));
     }
     
 }

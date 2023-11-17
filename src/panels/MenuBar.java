@@ -154,14 +154,16 @@ public class MenuBar extends JMenuBar {
         fileDescription.setText(description);
     }
 
-    public void Save(boolean copy)
+    public SaveMenu Save(boolean copy)
     {
         if(fileName.getText().equals("") || copy)
         {
             SaveMenu saveMenu = new SaveMenu(this);
+            return saveMenu;
         }
         else
         saveObject(fileName.getText(), fileDescription.getText(), false);
+        return null;
     }
 
     public void saveObject(String name, String description, boolean copy)

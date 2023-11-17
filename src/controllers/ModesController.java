@@ -7,6 +7,9 @@
  * changeMode(DefaultCanvasMode newMode, JPanel toolpropertiesMenu):
  *     Megváltoztatja a vászon módját az új módra és a hozzá tartozó eszköztulajdonság-menüre.
  * 
+ * getDefaultCanvasMode():
+ *     Visszaadja a DefaultCanvasMode objektumot
+ * 
  * getCanvas():
  *     Visszaadja a vászon objektumot.
  * 
@@ -48,6 +51,11 @@ public class ModesController {
     {
         canvasMode = newMode;
         toolsMenu.setToolPropertiesMenu(toolPropertiesMenu);
+    }
+
+    public DefaultCanvasMode getDefaultCanvasMode()
+    {
+        return canvasMode;
     }
 
     public Canvas getCanvas()

@@ -27,6 +27,36 @@
  *     Változtatja a kiválasztott szöveg tulajdonságait a megadott dokumentum alapján. Ellenőrzi a validitást, és ha a dokumentum a betűméretet reprezentálja, 
  *     akkor azt módosítja, különben a pozíciót és méretet változtatja meg.
  * 
+ * setPosX(String text):
+ *     Beállítja a PosX JTextField objektumot
+ * 
+ * setPosY(String text):
+ *     Beállítja a PosY JTextField objektumot
+ * 
+ * setFieldWidth(String text):
+ *     Beállítja a width JTextField objektumot
+ * 
+ * setFieldHeight(String text):
+ *     Beállítja a height JTextField objektumot
+ * 
+ * setFontSize(String text):
+ *     Beállítja a fontSize JTextField objektumot
+ * 
+ * getPosX():
+ *     Visszaadja a PosX JTextField objektumot
+ * 
+ * getPosY():
+ *     Visszaadja a PosY JTextField objektumot
+ * 
+ * getFieldWidth():
+ *     Visszaadja a width JTextField objektumot
+ * 
+ * getFieldHeight():
+ *     Visszadja a height JTextField objektumot
+ * 
+ * getFontSize():
+ *     Visszaadja a fontSize JTextField objektumot
+ * 
  */
 package panels;
 
@@ -175,5 +205,50 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
     {
 
     }
-        }  
+        }
+        
+        public void updateText()
+        {
+            update();
+        }
+        
+        public void setPosX(String text) {
+            posX.setText(text);
+        }
+    
+        public void setPosY(String text) {
+            posY.setText(text);
+        }
+    
+        public void setFieldWidth(String text) {
+            width.setText(text);
+        }
+    
+        public void setFieldHeight(String text) {
+           height.setText(text);
+        }
+    
+        public void setFontSize(String text) {
+            fontSize.setText(text);
+        }
+
+        public JTextField getPosX() {
+            return posX;
+        }
+    
+        public JTextField getPosY() {
+            return posY;
+        }
+    
+        public JTextField getFieldWidth() {
+            return width;
+        }
+    
+        public JTextField getFieldHeight() {
+            return height;
+        }
+    
+        public JTextField getFontSize() {
+            return fontSize;
+        }
 }

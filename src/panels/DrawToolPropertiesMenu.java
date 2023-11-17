@@ -27,6 +27,12 @@
  * 
  * getComponentName(Object triggeredObject):
  *     Az egyszerű műveletek interfész metódusa, visszaadja a kiválasztott komponens nevét.
+ * 
+ * getButtonGroup:
+ *     Visszaadja a ButtonGroup objektumot
+ * 
+ * getRadioButtons:
+ *     Visszaadja az ArrayList<JRadioButton> objektumot
  */
 package panels;
 
@@ -141,6 +147,16 @@ public class DrawToolPropertiesMenu extends ToolPropertiesMenu implements Simple
         if(strokeSlider == triggeredObject)
         return strokeSlider.getName();
         return null;
+    }
+
+    public ButtonGroup getButtonGroup()
+    {
+        return buttonGroup;
+    }
+    
+    public ArrayList<JRadioButton> getRadioButtons()
+    {
+        return radioButtons;
     }
     
 }

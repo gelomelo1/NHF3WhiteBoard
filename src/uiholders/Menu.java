@@ -21,6 +21,9 @@
  *     Ellenőrzi, hogy az összes szükséges erőforrásfájl létezik-e a megadott elérési útvonalakon.
  *     Ha bármelyik hiányzik, false-szal tér vissza, különben true-val.
  * 
+ * getModesController():
+ *     Visszaadja a ModesController objektumot
+ * 
  * addPathToMap(String key, String folder, String extension):
  *     Hozzáad egy kulcs-érték párt a resourceFiles térképhez, ahol a kulcs a fájl neve, az érték pedig az elérési útvonal.
  * 
@@ -59,7 +62,6 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import controllers.ModesController;
 import fileios.FileHandler;
@@ -86,7 +88,7 @@ public class Menu {
     }
 
     private JFrame jf;
-    private JMenuBar menuBar;
+    private MenuBar menuBar;
     private ModesController modesController;
 
     public Menu()
@@ -129,6 +131,16 @@ public class Menu {
             return false;
         }
         return true;
+    }
+
+    public ModesController getModesController()
+    {
+        return modesController;
+    }
+
+    public MenuBar getMenuBar()
+    {
+        return menuBar;
     }
 
     private static void addPathToMap(String key, String folder, String extension)
