@@ -71,7 +71,7 @@ public class DeleteMenu extends FrameMenus {
         description.setEditable(false);
         listPanel.add(description);
         JButton button = new JButton("Delete");
-        button.addActionListener(e -> { if(confirmDelete() == 0){menuBar.delete(selectedContainer); defaultListModel.remove(boardList.getSelectedIndex());}});
+        button.addActionListener(e -> {if(selectedContainer != null){if(confirmDelete() == 0){menuBar.delete(selectedContainer); defaultListModel.remove(boardList.getSelectedIndex());}}});
         buttonPanel.add(button);
     }
 
