@@ -33,6 +33,7 @@ public class CanvasTextListener implements FocusListener {
 
     @Override
     public void focusGained(FocusEvent e) {
+        textCanvasMode.resetSelection();
         textCanvasMode.setTextFocus((CanvasText)e.getSource());
         textCanvasMode.update();
     }

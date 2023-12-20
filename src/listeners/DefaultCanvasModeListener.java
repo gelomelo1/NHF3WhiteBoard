@@ -21,42 +21,71 @@
 package listeners;
 
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-
 import canvasmodes.DefaultCanvasMode;
 
-public class DefaultCanvasModeListener extends MouseAdapter {
+public class DefaultCanvasModeListener extends DefaultListener {
 
-    private Point mousePos;
-    private DefaultCanvasMode defaultCanvasMode;
-    private int pressedMouse;
+    private Point frameMousePos;
+    private boolean resizing = false;
 
     public DefaultCanvasModeListener(DefaultCanvasMode defaultCanvasMode)
     {
-        this.defaultCanvasMode = defaultCanvasMode;
+        super(defaultCanvasMode);
     }
 
-    public int getPressedMouse()
+    public void mouseClicked(MouseEvent e)
     {
-        return pressedMouse;
+        defaultCanvasMode.resetSelection();
+        if(e.getButton() == MouseEvent.BUTTON1)
+        {
+            if(!defaultCanvasMode.Selection(new Rectangle(e.getX(), e.getY(), 1, 1)))
+            defaultCanvasMode.resetSelection();
+        }
     }
 
     public void mousePressed(MouseEvent e)
     {
-        mousePos = e.getPoint();
-        pressedMouse = e.getButton();
+        super.mousePressed(e);
+        frameMousePos = e.getPoint();
+        if(defaultCanvasMode.getIsSelectionModeActive())
+        resizing = defaultCanvasMode.isResize(e.getPoint());
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        if(getPressedMouse() == MouseEvent.BUTTON1)
+        defaultCanvasMode.confirmSelection();
     }
 
     public void mouseDragged(MouseEvent e)
     {
+        if(getPressedMouse() == MouseEvent.BUTTON3)
         defaultCanvasMode.Move(new Point(Double.valueOf(e.getX() - mousePos.getX()).intValue(), Double.valueOf(e.getY() - mousePos.getY()).intValue()));
-    }
-
-    public void mouseMoved(MouseEvent e)
-    {
-        defaultCanvasMode.setMousePos(e.getPoint());
-        if(defaultCanvasMode.getIsMenuUpdateable())
-           defaultCanvasMode.update();
+        else if(getPressedMouse() == MouseEvent.BUTTON1)
+        {
+            if(defaultCanvasMode.getIsSelectionModeActive())
+            {
+                if(resizing)
+                defaultCanvasMode.resize(new Point(Double.valueOf(e.getX() - frameMousePos.getX()).intValue(), Double.valueOf(e.getY() - frameMousePos.getY()).intValue()));
+                else
+                defaultCanvasMode.moveObjects(new Point(Double.valueOf(e.getX() - frameMousePos.getX()).intValue(), Double.valueOf(e.getY() - frameMousePos.getY()).intValue()));
+                frameMousePos = e.getPoint();
+            }
+            else
+            {
+            Rectangle rectangle = null;
+            if(mousePos.getX() <= e.getX() && mousePos.getY() <= e.getY())
+            rectangle = new Rectangle(mousePos.x, mousePos.y, e.getX() - mousePos.x, e.getY() - mousePos.y);
+            else if(mousePos.getX() <= e.getX() && mousePos.getY() >= e.getY())
+            rectangle = new Rectangle(mousePos.x, e.getY(), e.getX() - mousePos.x, mousePos.y - e.getY());
+            else if(mousePos.getX() >= e.getX() && mousePos.getY() <= e.getY())
+            rectangle = new Rectangle(e.getX(), mousePos.y, mousePos.x - e.getX(), e.getY() - mousePos.y);
+            else if(mousePos.getX() >= e.getX() && mousePos.getY() >= e.getY())
+            rectangle = new Rectangle(e.getX(), e.getY(), mousePos.x - e.getX(), mousePos.y - e.getY());
+            defaultCanvasMode.Selection(rectangle);
+            }
+        }
     }
 }

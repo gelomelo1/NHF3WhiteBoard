@@ -104,6 +104,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -112,6 +113,7 @@ import javax.swing.JScrollPane;
 import additions.Background;
 import additions.Brush;
 import additions.CanvasActivity;
+import additions.SelectionRectangle;
 import containers.CanvasImage;
 import containers.CanvasText;
 import containers.Drawing;
@@ -128,9 +130,9 @@ public class Canvas extends JPanel {
     private MouseAdapter selectedListener;
     private ToolPropertiesMenu toolPropertiesMenu;
     private Point mousePos;
+    private SelectionRectangle selectionRectangle;
     private Brush brush;
-    private CanvasText selectedText;
-    private CanvasImage selectedImage;
+    private ArrayList<CanvasActivity> selectedCanvasActivities;
 
     //containers
     private ArrayList<Drawing> curves;
@@ -166,8 +168,7 @@ public class Canvas extends JPanel {
     private void initializeLoadedData()
     {
         removeAll();
-        selectedImage = null;
-        selectedText = null;
+        selectedCanvasActivities = new ArrayList<CanvasActivity>();
         for (CanvasImage canvasImage : images) {
             canvasImage.loadImage();
             add(canvasImage);
@@ -203,8 +204,9 @@ public class Canvas extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         background.drawBackground(g2, maxWidth, maxHeight);
+        if(selectionRectangle != null)
+        selectionRectangle.drawSelectionRectangle(g2);
         drawCurves(g2);
-        g2.setStroke(new BasicStroke(0));
     }
 
     public void setMouseListener(MouseAdapter mouseListener)
@@ -311,24 +313,59 @@ public class Canvas extends JPanel {
         return canvObjects;
     }
 
-    public CanvasText getSelectedText()
+    public ArrayList<CanvasText> getSelectedText()
     {
+        ArrayList<CanvasText> selectedText = new ArrayList<CanvasText>();
+        for (CanvasActivity canvasActivity : selectedCanvasActivities) {
+            if(canvasActivity instanceof CanvasText)
+            selectedText.add((CanvasText) canvasActivity);
+        }
         return selectedText;
     }
 
-    public void setSelectedText(CanvasText selectedText)
+    public ArrayList<Drawing> getSelectedCurve()
     {
-        this.selectedText = selectedText;
+        ArrayList<Drawing> selectedCurve = new ArrayList<Drawing>();
+        for (CanvasActivity canvasActivity : selectedCanvasActivities) {
+            if(canvasActivity instanceof Drawing)
+            selectedCurve.add((Drawing) canvasActivity);
+        }
+        return selectedCurve;
     }
 
-    public CanvasImage getSelectedImage()
+    public ArrayList<CanvasImage> getSelectedImage()
     {
+        ArrayList<CanvasImage> selectedImage = new ArrayList<CanvasImage>();
+        for (CanvasActivity canvasActivity : selectedCanvasActivities) {
+            if(canvasActivity instanceof CanvasImage)
+            selectedImage.add((CanvasImage) canvasActivity);
+        }
         return selectedImage;
     }
 
-    public void setSelectedImage(CanvasImage selectedImage)
+    public ArrayList<CanvasActivity> getSelectedCanvasActivities()
     {
-        this.selectedImage = selectedImage;
+        return selectedCanvasActivities;
+    }
+
+    public void addSelectedCanvasActivity(CanvasActivity canvasActivity)
+    {
+        canvasActivity.setSelected();
+        selectedCanvasActivities.add(canvasActivity);
+    }
+
+    public void removeSelectedCanvasActivity(CanvasActivity canvasActivity)
+    {
+        canvasActivity.resetSelected();
+        selectedCanvasActivities.remove(canvasActivity);
+    }
+
+    public void resetActivitiesSelection()
+    {
+        for (CanvasActivity canvasActivity : selectedCanvasActivities) {
+            canvasActivity.resetSelected();
+        }
+        selectedCanvasActivities = new ArrayList<CanvasActivity>();
     }
 
     public int getMaxWidth()
@@ -344,6 +381,16 @@ public class Canvas extends JPanel {
     public JScrollPane getCanvasLayout()
     {
         return canvasLayout;
+    }
+
+    public void setSelectionRectangle(SelectionRectangle rectangle)
+    {
+        selectionRectangle = rectangle;
+    }
+
+    public SelectionRectangle getSelectionRectangle()
+    {
+        return selectionRectangle;
     }
 
     public void newCanvas()

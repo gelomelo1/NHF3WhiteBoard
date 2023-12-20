@@ -37,13 +37,15 @@ public void placeText(Point point)
     text.setLineWrap(true);
     text.addFocusListener(canvasTextListener);
     getCanvas().repaint();
-    getCanvas().setSelectedText(text);
+    getCanvas().resetActivitiesSelection();
+    getCanvas().addSelectedCanvasActivity(text);
 
 }
 
 public void setTextFocus(CanvasText text)
 {
-    getCanvas().setSelectedText(text);
+    getCanvas().resetActivitiesSelection();
+    getCanvas().addSelectedCanvasActivity(text);
 }
 
 }

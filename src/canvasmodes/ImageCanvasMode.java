@@ -56,7 +56,8 @@ public void placeImage(Point point)
     destination += path.substring(path.lastIndexOf("\\"));
     CanvasImage image = getCanvas().addImage(new Point(point.x - 50, point.y - 50), destination);
     getCanvas().repaint();
-    getCanvas().setSelectedImage(image);
+    getCanvas().resetActivitiesSelection();
+    getCanvas().addSelectedCanvasActivity(image);
     }
 }
 
@@ -111,7 +112,8 @@ private String checkRename(String path)
 
 public void setImageFocus(CanvasImage image)
 {
-    getCanvas().setSelectedImage(image);
+    getCanvas().resetActivitiesSelection();
+    getCanvas().addSelectedCanvasActivity(image);
 }
 
 public CanvasImage imageClicked(Point point)

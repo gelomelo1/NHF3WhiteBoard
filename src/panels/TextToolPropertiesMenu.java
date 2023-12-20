@@ -94,7 +94,7 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
         width = initFields("Width:", textPanel);
         height = initFields("Height:", textPanel);
         fontSize = initFields("Font size:", textPanel);
-        getCanvas().setSelectedText(null);
+        getCanvas().resetActivitiesSelection();
     }
 
     private JTextField initFields(String labelName, JPanel panel)
@@ -113,7 +113,9 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
 
     @Override
     protected void update() {
-        CanvasText text = getCanvas().getSelectedText();
+        CanvasText text = null;
+        if(getCanvas().getSelectedText().size() == 1)
+         text = getCanvas().getSelectedText().get(0);
         if(text == null)
         {
             posX.setText("");
@@ -138,21 +140,25 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
         int max;
         if(isHorizontal)
         {
+            for (CanvasText canvasText : getCanvas().getSelectedText()) {
             max = getCanvas().getMaxWidth();
             if(isPosition)
-            max -= getCanvas().getSelectedText().getWidth();
-            if(value >= 0 && value <= max)
-            return true;
+            max -= canvasText.getWidth();
+            if(!(value >= 0 && value <= max))
+            return false;
+            }
         }
         else
         {
+            for (CanvasText canvasText : getCanvas().getSelectedText()) {
             max = getCanvas().getMaxHeight();
             if(isPosition)
-            max -= getCanvas().getSelectedText().getHeight();
-            if(value >= 0 && value <= max)
-            return true;
+            max -= canvasText.getHeight();
+            if(!(value >= 0 && value <= max))
+            return false; 
+            }
         }
-        return false;
+        return true;
     }
 
     public void changeValue(Document document)
@@ -160,14 +166,16 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
         try
         {
         int value;
+        if(getCanvas().getSelectedText().size() == 1)
+        {
         if(document == fontSize.getDocument())
         {
             value = Integer.parseInt(fontSize.getText());
-            getCanvas().getSelectedText().changeFontSize(value);
+            getCanvas().getSelectedText().get(0).changeFontSize(value);
         }
         else
         {
-            Rectangle rectangle = getCanvas().getSelectedText().getBounds();
+            Rectangle rectangle = getCanvas().getSelectedText().get(0).getBounds();
             if(document == posX.getDocument())
             {
                 value = Integer.parseInt(posX.getText());
@@ -198,8 +206,9 @@ public class TextToolPropertiesMenu extends ToolPropertiesMenu implements Proper
                 if(valueIsValid(value + offset, false, false))
                 rectangle.height = value;
             }
-            getCanvas().getSelectedText().setBounds(rectangle);
+            getCanvas().getSelectedText().get(0).setBounds(rectangle);
         }
+    }
     }
     catch(NumberFormatException e)
     {

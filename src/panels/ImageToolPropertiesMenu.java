@@ -72,7 +72,7 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
         width = initFields("Width:", textPanel);
         height = initFields("Height:", textPanel);
         copy = initButton("Copy", buttonPanel);
-        getCanvas().setSelectedImage(null);
+        getCanvas().resetActivitiesSelection();
     }
 
     private JButton initButton(String name, JPanel panel)
@@ -100,7 +100,9 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
 
     @Override
     protected void update() {
-        CanvasImage image = getCanvas().getSelectedImage();
+        CanvasImage image = null;
+        if(getCanvas().getSelectedImage().size() == 1)
+        image = getCanvas().getSelectedImage().get(0);
         if(image == null)
         {
             posX.setText("");
@@ -123,29 +125,33 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
         int max;
         if(isHorizontal)
         {
+            for (CanvasImage canvasImage : getCanvas().getSelectedImage()) {
             max = getCanvas().getMaxWidth();
             if(isPosition)
-            max -= getCanvas().getSelectedImage().getWidth();
-            if(value >= 0 && value <= max)
-            return true;
+            max -= canvasImage.getWidth();
+            if(!(value >= 0 && value <= max))
+            return false;   
+            }
         }
         else
         {
+            for (CanvasImage canvasImage : getCanvas().getSelectedImage()) {
             max = getCanvas().getMaxHeight();
             if(isPosition)
-            max -= getCanvas().getSelectedImage().getHeight();
-            if(value >= 0 && value <= max)
-            return true;
+            max -= canvasImage.getHeight();
+            if(!(value >= 0 && value <= max))
+            return false;   
+            }
         }
-        return false;
+        return true;
     }
 
     private void copyImage()
     {
-        if(getCanvas().getSelectedImage() != null)
+        if(getCanvas().getSelectedImage().size() == 1)
         {
-        Rectangle originalPos = getCanvas().getSelectedImage().getBounds();
-        String path = getCanvas().getSelectedImage().getPath();
+        Rectangle originalPos = getCanvas().getSelectedImage().get(0).getBounds();
+        String path = getCanvas().getSelectedImage().get(0).getPath();
         Point point = new Point();
         int copyOffset = Double.valueOf(Math.sqrt(Math.pow((originalPos.width / 2), 2) + Math.pow(originalPos.height / 2, 2))).intValue() + 20;
         int[][] directions = {{copyOffset, copyOffset}, {-copyOffset, copyOffset}, {copyOffset, -copyOffset}, {-copyOffset, -copyOffset}};
@@ -157,7 +163,7 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
                 break;
         }
         CanvasImage image = getCanvas().addImage(point, path);
-        getCanvas().setSelectedImage(image);
+        getCanvas().addSelectedCanvasActivity(image);
         getCanvas().repaint();
         }
     }
@@ -166,8 +172,10 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
     public void changeValue(Document document) {
         try
         {
+        if(getCanvas().getSelectedImage().size() == 1)
+        {
         int value;
-        Rectangle rectangle = getCanvas().getSelectedImage().getBounds();
+        Rectangle rectangle = getCanvas().getSelectedImage().get(0).getBounds();
         if(document == posX.getDocument())
         {
             value = Integer.parseInt(posX.getText());
@@ -198,7 +206,8 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
             if(valueIsValid(value + offset, false, false))
             rectangle.height = value;
         }
-        getCanvas().getSelectedImage().setBounds(rectangle);
+        getCanvas().getSelectedImage().get(0).setBounds(rectangle);
+        }
         }
     catch(NumberFormatException e)
     {

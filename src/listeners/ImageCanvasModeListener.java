@@ -21,7 +21,7 @@ import java.awt.event.MouseEvent;
 import canvasmodes.ImageCanvasMode;
 import containers.CanvasImage;
 
-public class ImageCanvasModeListener extends DefaultCanvasModeListener {
+public class ImageCanvasModeListener extends DefaultListener {
     private ImageCanvasMode imageCanvasMode;
 
     public ImageCanvasModeListener(ImageCanvasMode imageCanvasMode)

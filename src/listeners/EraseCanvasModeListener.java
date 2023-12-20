@@ -17,7 +17,7 @@ package listeners;
 import java.awt.event.MouseEvent;
 import canvasmodes.EraseCanvasMode;
 
-public class EraseCanvasModeListener extends DefaultCanvasModeListener {
+public class EraseCanvasModeListener extends DefaultListener {
 
     private EraseCanvasMode eraseCanvasMode;
 

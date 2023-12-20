@@ -38,6 +38,7 @@ import panels.Canvas;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.Serializable;
 
 public class Drawing implements CanvasActivity, Serializable {
@@ -97,5 +98,39 @@ public class Drawing implements CanvasActivity, Serializable {
     @Override
     public void erase(Canvas canvas) {
         canvas.getCurves().remove(this);
+    }
+
+    @Override
+    public void setSelected() {
+        
+    }
+
+        @Override
+    public void resetSelected() {
+        
+    }
+
+    @Override
+    public boolean isCollided(Rectangle rectangle) {
+        for (Point drawPoints : curve) {
+            if(rectangle.contains(drawPoints))
+              return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void moveCanvasObject(Point point) {
+        
+    }
+
+    @Override
+    public void resizeCanvasObject(Point point) {
+
+    }
+
+    @Override
+    public Rectangle getSelectedBounds() {
+        return null;
     }
 }
