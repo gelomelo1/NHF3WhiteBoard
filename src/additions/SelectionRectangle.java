@@ -11,6 +11,7 @@ public class SelectionRectangle implements MoveAndResize {
     private boolean invertedHeight = false;
     private Rectangle selectionRectangle;
     private BasicStroke stroke = new BasicStroke(5);
+    private int offset = 5;
 
     public SelectionRectangle(Rectangle selectionRectangle)
     {
@@ -25,6 +26,11 @@ public class SelectionRectangle implements MoveAndResize {
     public float getSize()
     {
         return stroke.getLineWidth();
+    }
+
+    public int getOffset()
+    {
+        return offset;
     }
 
     public void drawSelectionRectangle(Graphics2D g2)

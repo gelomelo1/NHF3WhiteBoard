@@ -104,7 +104,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -113,6 +112,7 @@ import javax.swing.JScrollPane;
 import additions.Background;
 import additions.Brush;
 import additions.CanvasActivity;
+import additions.ImageTransferHandler;
 import additions.SelectionRectangle;
 import containers.CanvasImage;
 import containers.CanvasText;
@@ -155,6 +155,7 @@ public class Canvas extends JPanel {
 
     private void initComp(JFrame jf)
     {
+        setTransferHandler(new ImageTransferHandler(this));
         canvasLayout = new JScrollPane();
         setLayout(null);
         jf.add(canvasLayout, BorderLayout.CENTER);
@@ -173,7 +174,6 @@ public class Canvas extends JPanel {
             canvasImage.loadImage();
             add(canvasImage);
         }
-
         for (CanvasText canvasText : texts) {
             add(canvasText);
         }
@@ -274,13 +274,18 @@ public class Canvas extends JPanel {
         return text;
     }
 
-    public CanvasImage addImage(Point point, String path)
+    public CanvasImage addImage(Point point, int width, int height, String path)
     {
         CanvasImage image = new CanvasImage(path);
-        image.setBounds(point.x, point.y, 100, 100);
+        image.setBounds(point.x, point.y, width, height);
         add(image);
         images.add(image);
         return image;
+    }
+
+    public MouseAdapter getSelectedListener()
+    {
+        return selectedListener;
     }
 
     public ArrayList<Drawing> getCurves()

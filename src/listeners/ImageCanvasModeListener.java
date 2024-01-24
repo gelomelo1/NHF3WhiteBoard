@@ -38,7 +38,7 @@ public class ImageCanvasModeListener extends DefaultListener {
             if(selectedImage != null)
             imageCanvasMode.setImageFocus(selectedImage);
             else
-            imageCanvasMode.placeImage(e.getPoint());
+            imageCanvasMode.placeImage(e.getPoint(), null);
             imageCanvasMode.update();
         }
     }
@@ -47,10 +47,5 @@ public class ImageCanvasModeListener extends DefaultListener {
     {
         if(getPressedMouse() == MouseEvent.BUTTON3)
             super.mouseDragged(e);
-    }
-
-    public void mouseMoved(MouseEvent e)
-    {
-
     }
 }

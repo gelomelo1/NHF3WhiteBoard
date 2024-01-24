@@ -28,6 +28,7 @@ import canvasmodes.DefaultCanvasMode;
 public class DefaultCanvasModeListener extends DefaultListener {
 
     private Point frameMousePos;
+    private Point mouseCurrentPoint;
     private boolean resizing = false;
 
     public DefaultCanvasModeListener(DefaultCanvasMode defaultCanvasMode)
@@ -38,11 +39,6 @@ public class DefaultCanvasModeListener extends DefaultListener {
     public void mouseClicked(MouseEvent e)
     {
         defaultCanvasMode.resetSelection();
-        if(e.getButton() == MouseEvent.BUTTON1)
-        {
-            if(!defaultCanvasMode.Selection(new Rectangle(e.getX(), e.getY(), 1, 1)))
-            defaultCanvasMode.resetSelection();
-        }
     }
 
     public void mousePressed(MouseEvent e)
@@ -56,7 +52,7 @@ public class DefaultCanvasModeListener extends DefaultListener {
     public void mouseReleased(MouseEvent e)
     {
         if(getPressedMouse() == MouseEvent.BUTTON1)
-        defaultCanvasMode.confirmSelection();
+            defaultCanvasMode.confirmSelection();
     }
 
     public void mouseDragged(MouseEvent e)
@@ -87,5 +83,15 @@ public class DefaultCanvasModeListener extends DefaultListener {
             defaultCanvasMode.Selection(rectangle);
             }
         }
+    }
+
+    public void mouseMoved(MouseEvent e)
+    {
+        mouseCurrentPoint = e.getPoint();
+    }
+
+    public Point getMouseCurrentPoint()
+    {
+        return mouseCurrentPoint;
     }
 }

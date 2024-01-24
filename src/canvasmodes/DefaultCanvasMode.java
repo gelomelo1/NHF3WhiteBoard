@@ -37,7 +37,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
-
 import javax.swing.JTextArea;
 import additions.CanvasActivity;
 import additions.SelectionRectangle;
@@ -48,12 +47,16 @@ import panels.ToolPropertiesMenu;
 public class DefaultCanvasMode {
 
     private Canvas canvas;
+    private DefaultCanvasModeListener defaultCanvasModeListener;
     private boolean isMenuUpdateable;
     private boolean isSelectionModeActive = false;
+    private ArrayList<Integer> ratio;
+    private int cycle = 0;
 
     protected DefaultCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu, boolean isMenuUpdateable)
     {
-        initCanvasMode(canvas, new DefaultCanvasModeListener(this), toolPropertiesMenu, isMenuUpdateable);
+        defaultCanvasModeListener = new DefaultCanvasModeListener(this);
+        initCanvasMode(canvas, defaultCanvasModeListener, toolPropertiesMenu, isMenuUpdateable);
     }
 
      public DefaultCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu)
@@ -70,9 +73,8 @@ public class DefaultCanvasMode {
         resetSelection();
     }
 
-    private SelectionRectangle getSumRectangle(ArrayList<CanvasActivity> selectedActivities)
+    private SelectionRectangle getSumRectangle(ArrayList<CanvasActivity> selectedActivities, int offset)
     {
-        int space = 5;
         int minX = selectedActivities.get(0).getSelectedBounds().x;
         int minY = selectedActivities.get(0).getSelectedBounds().y;
         int maxX = 0;
@@ -88,11 +90,28 @@ public class DefaultCanvasMode {
             if(rectangle.y + rectangle.height > maxY)
             maxY = rectangle.y + rectangle.height;
         }
-        minX -= space;
-        minY -= space;
-        maxX = maxX - minX + space;
-        maxY = maxY - minY + space;
+        minX -= offset;
+        minY -= offset;
+        maxX = maxX - minX + offset;
+        maxY = maxY - minY + offset;
         return new SelectionRectangle(new Rectangle(minX, minY, maxX, maxY));
+    }
+
+    private int getRatio(Rectangle mainRect, Rectangle secondaryRect)
+    {
+        int mainArea = mainRect.width * mainRect.height;
+        int secondaryArea = secondaryRect.width * secondaryRect.height;
+        return secondaryArea / mainArea;
+    }
+
+    private Point keepInsideRectangle(Rectangle containerRect, Rectangle selectedRect, Point vector)
+    {
+        Point point = new Point(vector);
+        if(selectedRect.x < containerRect.x || selectedRect.x + selectedRect.width > containerRect.x + containerRect.width)
+        point.x = 0;
+        if(selectedRect.y < containerRect.y || selectedRect.y + selectedRect.height > containerRect.y + containerRect.height)
+        point.y = 0;
+        return point;
     }
 
     public Canvas getCanvas()
@@ -133,6 +152,7 @@ public class DefaultCanvasMode {
 
     public boolean Selection(Rectangle rectangle)
     {
+        cycle = 1;
         canvas.setSelectionRectangle(new SelectionRectangle(rectangle));
         boolean activityAdded = false;
         Component focusedComp = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
@@ -164,7 +184,11 @@ public class DefaultCanvasMode {
             canvas.setSelectionRectangle(null);
         else
         {
-            canvas.setSelectionRectangle(getSumRectangle(canvas.getSelectedCanvasActivities()));
+            canvas.setSelectionRectangle(getSumRectangle(canvas.getSelectedCanvasActivities(), canvas.getSelectionRectangle().getOffset()));
+            ratio = new ArrayList<Integer>();
+            for (CanvasActivity canvasActivity : canvas.getSelectedCanvasActivities()) {
+                ratio.add(getRatio(canvasActivity.getSelectedBounds(), canvas.getSelectionRectangle().getSelectionRectangle()) - 1);
+            }
             isSelectionModeActive = true;
         }
         canvas.repaint();
@@ -194,11 +218,20 @@ public class DefaultCanvasMode {
 
     public void resize(Point point)
     {
-            for (CanvasActivity canvasActivity : canvas.getSelectedCanvasActivities()) {
-            canvasActivity.resizeCanvasObject(point);
-            canvasActivity.moveCanvasObject(point);
+        ArrayList<CanvasActivity> selectedActivities = canvas.getSelectedCanvasActivities();
+        Rectangle selectionRectangle = canvas.getSelectionRectangle().getSelectionRectangle();
+        int offset = canvas.getSelectionRectangle().getOffset();
+        for(int i = 0; i < canvas.getSelectedCanvasActivities().size(); i++)
+        {
+            if(cycle % ratio.get(i) == 0)
+            {
+                selectedActivities.get(i).resizeCanvasObject(point);
+                ratio.set(i, getRatio(selectedActivities.get(i).getSelectedBounds(), canvas.getSelectionRectangle().getSelectionRectangle()) - 1);
+            }
+            selectedActivities.get(i).moveCanvasObject(keepInsideRectangle(new Rectangle(selectionRectangle.x + offset, selectionRectangle.y + offset, selectionRectangle.width - offset, selectionRectangle.height - offset), selectedActivities.get(i).getSelectedBounds(), point));
         }
         canvas.getSelectionRectangle().resizeCanvasObject(point);
+        cycle++;
         canvas.repaint();
     }
 
@@ -217,6 +250,11 @@ public class DefaultCanvasMode {
             return true;
         }
         return false;
+    }
+
+    public DefaultCanvasModeListener getDefaultCanvasModeListener()
+    {
+        return defaultCanvasModeListener;
     }
 
 }

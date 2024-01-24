@@ -162,7 +162,7 @@ public class ImageToolPropertiesMenu extends ToolPropertiesMenu implements Prope
             if(valueIsValid(point.x, true, true) && valueIsValid(point.y, false, true))
                 break;
         }
-        CanvasImage image = getCanvas().addImage(point, path);
+        CanvasImage image = getCanvas().addImage(point, originalPos.width, originalPos.height, path);
         getCanvas().addSelectedCanvasActivity(image);
         getCanvas().repaint();
         }

@@ -35,15 +35,21 @@ import uiholders.Menu;
 
 public class ImageCanvasMode extends DefaultCanvasMode {
 
+    private int defaultImageWidth = 100;
+    private int defaultImageHeight = 100;
+
 public ImageCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu)
 {
     super(canvas, toolPropertiesMenu, false);
     setMouseListener(new ImageCanvasModeListener(this));
 }  
 
-public void placeImage(Point point)
+public void placeImage(Point point, String path)
 {
-    String path = checkImageData();
+    if(path == null)
+    path = checkImageData();
+    else if(!checkExtension(path))
+    path = null;
     if(path != null)
     {
     String destination = Paths.get("").toAbsolutePath().resolve(Menu.getTempFolder()).toString();
@@ -54,31 +60,37 @@ public void placeImage(Point point)
     destination += "\\" + rename;
     else
     destination += path.substring(path.lastIndexOf("\\"));
-    CanvasImage image = getCanvas().addImage(new Point(point.x - 50, point.y - 50), destination);
+    CanvasImage image = getCanvas().addImage(new Point(point.x - 50, point.y - 50), defaultImageWidth, defaultImageHeight, destination);
     getCanvas().repaint();
     getCanvas().resetActivitiesSelection();
-    getCanvas().addSelectedCanvasActivity(image);
     }
 }
 
 private String checkImageData()
 {
-    String[] extensions = {"png", "jpg", "jpeg"};
     String path = null;
     do
     {
      path = JOptionPane.showInputDialog("Please give the image path:");
     if(FileHandler.isFileExist(path))
     {
-       if(FileHandler.validExtension(path, extensions))
-            return path;
-       else
-    JOptionPane.showMessageDialog(null, "File extension not supported!", "Warning", JOptionPane.WARNING_MESSAGE);   
+        if(checkExtension(path))
+        return path;
     }
     else if(path != null)
     JOptionPane.showMessageDialog(null, "No image was found!", "Warning", JOptionPane.WARNING_MESSAGE);   
     }while(path != null);
     return null;
+}
+
+private boolean checkExtension(String path)
+{
+    String[] extensions = {"png", "jpg", "jpeg"};
+    if(FileHandler.validExtension(path, extensions))
+    return true;
+else
+JOptionPane.showMessageDialog(null, "File extension not supported!", "Warning", JOptionPane.WARNING_MESSAGE);
+return false;   
 }
 
 private String checkRename(String path)
@@ -123,6 +135,16 @@ public CanvasImage imageClicked(Point point)
          return image;
     }
     return null;
+}
+
+public int getDefaultImageWidth()
+{
+    return defaultImageWidth;
+}
+
+public int getDefaultImageHeight()
+{
+    return defaultImageHeight;
 }
 
 }
