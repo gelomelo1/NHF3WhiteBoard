@@ -398,6 +398,11 @@ public class Canvas extends JPanel {
         return selectionRectangle;
     }
 
+    public ToolPropertiesMenu getToolPropertiesMenu()
+    {
+        return toolPropertiesMenu;
+    }
+
     public void newCanvas()
     {
         curves = new ArrayList<Drawing>();

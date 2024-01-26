@@ -39,6 +39,13 @@ public class DefaultCanvasModeListener extends DefaultListener {
     public void mouseClicked(MouseEvent e)
     {
         defaultCanvasMode.resetSelection();
+        if(e.getButton() == MouseEvent.BUTTON1)
+        {
+            if(defaultCanvasMode.Selection(new Rectangle(e.getX(), e.getY(), 1, 1)))
+            defaultCanvasMode.confirmSelection();
+            else
+            defaultCanvasMode.resetSelection();
+        }
     }
 
     public void mousePressed(MouseEvent e)
@@ -88,6 +95,8 @@ public class DefaultCanvasModeListener extends DefaultListener {
     public void mouseMoved(MouseEvent e)
     {
         mouseCurrentPoint = e.getPoint();
+        defaultCanvasMode.setMousePos(e.getPoint());
+        defaultCanvasMode.update();
     }
 
     public Point getMouseCurrentPoint()

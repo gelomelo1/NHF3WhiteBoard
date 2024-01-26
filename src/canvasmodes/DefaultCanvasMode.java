@@ -36,10 +36,13 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 import additions.CanvasActivity;
 import additions.SelectionRectangle;
+import containers.CanvasText;
+import listeners.CanvasTextListener;
 import listeners.DefaultCanvasModeListener;
 import panels.Canvas;
 import panels.ToolPropertiesMenu;
@@ -70,6 +73,16 @@ public class DefaultCanvasMode {
         this.canvas.setMouseListener(mouseListener);
         this.canvas.setToolPropertiesMenu(toolPropertiesMenu);
         this.isMenuUpdateable = isMenuUpdateable;
+        for (CanvasText canvasText : canvas.getTexts()) {
+            for (int i = 0; i < canvasText.getMouseListeners().length; i++) {
+                if(canvasText.getMouseListeners()[i] instanceof CanvasTextListener)
+                {
+                    CanvasTextListener canvasTextListener = (CanvasTextListener) canvasText.getMouseListeners()[i];
+                    canvasTextListener.setDefaultCanvasMode(this);
+                    break;
+                }
+            }
+        }
         resetSelection();
     }
 
@@ -255,6 +268,11 @@ public class DefaultCanvasMode {
     public DefaultCanvasModeListener getDefaultCanvasModeListener()
     {
         return defaultCanvasModeListener;
+    }
+
+    public int getSelectedActivitiesCount()
+    {
+        return canvas.getSelectedCanvasActivities().size();
     }
 
 }

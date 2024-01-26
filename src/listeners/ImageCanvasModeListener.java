@@ -37,6 +37,8 @@ public class ImageCanvasModeListener extends DefaultListener {
             CanvasImage selectedImage = imageCanvasMode.imageClicked(e.getPoint());
             if(selectedImage != null)
             imageCanvasMode.setImageFocus(selectedImage);
+            else if(imageCanvasMode.getSelectedActivitiesCount() > 0)
+            imageCanvasMode.resetSelection();
             else
             imageCanvasMode.placeImage(e.getPoint(), null);
             imageCanvasMode.update();
@@ -47,5 +49,10 @@ public class ImageCanvasModeListener extends DefaultListener {
     {
         if(getPressedMouse() == MouseEvent.BUTTON3)
             super.mouseDragged(e);
+    }
+
+    public void mouseMoved(MouseEvent e)
+    {
+
     }
 }

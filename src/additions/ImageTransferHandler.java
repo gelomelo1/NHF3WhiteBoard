@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 import javax.swing.TransferHandler;
 import canvasmodes.ImageCanvasMode;
 import panels.Canvas;
+import panels.ToolPropertiesMenu;
+
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -35,6 +37,7 @@ public class ImageTransferHandler extends TransferHandler {
         return false;
 
         MouseAdapter originalMouseAdapter = canvas.getSelectedListener();
+        ToolPropertiesMenu originaToolPropertiesMenu = canvas.getToolPropertiesMenu();
         Transferable transferable = support.getTransferable();
         ImageCanvasMode imageCanvasMode = new ImageCanvasMode(canvas, null);
         Point mousePoint = canvas.getMousePosition();
@@ -47,10 +50,10 @@ public class ImageTransferHandler extends TransferHandler {
                 posX += width + offset;
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Cannot copy the image!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         canvas.setMouseListener(originalMouseAdapter);
+        canvas.setToolPropertiesMenu(originaToolPropertiesMenu);
         return true;
     }
 }

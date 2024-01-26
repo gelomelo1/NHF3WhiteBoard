@@ -31,6 +31,9 @@ public class TextCanvasModeListener extends DefaultListener {
     {
         if(getPressedMouse() == MouseEvent.BUTTON1)
         {
+            if(textCanvasMode.getSelectedActivitiesCount() > 0)
+            textCanvasMode.resetSelection();
+            else
             textCanvasMode.placeText(e.getPoint());
             textCanvasMode.update();
         }

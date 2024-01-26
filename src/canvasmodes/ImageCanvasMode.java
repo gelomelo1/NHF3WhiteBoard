@@ -60,7 +60,7 @@ public void placeImage(Point point, String path)
     destination += "\\" + rename;
     else
     destination += path.substring(path.lastIndexOf("\\"));
-    CanvasImage image = getCanvas().addImage(new Point(point.x - 50, point.y - 50), defaultImageWidth, defaultImageHeight, destination);
+    getCanvas().addImage(new Point(point.x - 50, point.y - 50), defaultImageWidth, defaultImageHeight, destination);
     getCanvas().repaint();
     getCanvas().resetActivitiesSelection();
     }
