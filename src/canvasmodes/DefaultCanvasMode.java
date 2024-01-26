@@ -36,7 +36,6 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 import additions.CanvasActivity;
@@ -79,6 +78,7 @@ public class DefaultCanvasMode {
                 {
                     CanvasTextListener canvasTextListener = (CanvasTextListener) canvasText.getMouseListeners()[i];
                     canvasTextListener.setDefaultCanvasMode(this);
+                    canvasTextListener.setIsDefaultMode(true);
                     break;
                 }
             }
@@ -265,6 +265,12 @@ public class DefaultCanvasMode {
         return false;
     }
 
+    public void setTextFocus(CanvasText text)
+{
+    getCanvas().resetActivitiesSelection();
+    getCanvas().addSelectedCanvasActivity(text);
+}
+
     public DefaultCanvasModeListener getDefaultCanvasModeListener()
     {
         return defaultCanvasModeListener;
@@ -273,6 +279,14 @@ public class DefaultCanvasMode {
     public int getSelectedActivitiesCount()
     {
         return canvas.getSelectedCanvasActivities().size();
+    }
+
+    public boolean isSelectionExist()
+    {
+        if(canvas.getSelectionRectangle() != null)
+        return true;
+        else
+        return false;
     }
 
 }

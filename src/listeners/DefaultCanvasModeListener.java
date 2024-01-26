@@ -58,7 +58,7 @@ public class DefaultCanvasModeListener extends DefaultListener {
 
     public void mouseReleased(MouseEvent e)
     {
-        if(getPressedMouse() == MouseEvent.BUTTON1)
+        if(getPressedMouse() == MouseEvent.BUTTON1 && defaultCanvasMode.isSelectionExist())
             defaultCanvasMode.confirmSelection();
     }
 

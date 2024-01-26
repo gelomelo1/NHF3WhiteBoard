@@ -21,19 +21,32 @@ import panels.Canvas;
 import panels.ToolPropertiesMenu;
 
 public class TextCanvasMode extends DefaultCanvasMode {
-
+    
+    private static boolean listenerExist = false;
     private CanvasTextListener canvasTextListener;
 
 public TextCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu)
 {
     super(canvas, toolPropertiesMenu, false);
-    canvasTextListener = new CanvasTextListener(this);
+    if(!listenerExist)
+    canvasTextListener = new CanvasTextListener(this, false);
+    listenerExist = true;
+    for (CanvasText canvasText : canvas.getTexts()) {
+        for (int i = 0; i < canvasText.getMouseListeners().length; i++) {
+            if(canvasText.getMouseListeners()[i] instanceof CanvasTextListener)
+            {
+                CanvasTextListener canvasTextListener = (CanvasTextListener) canvasText.getMouseListeners()[i];
+                canvasTextListener.setDefaultCanvasMode(this);
+                canvasTextListener.setIsDefaultMode(false);
+                break;
+            }
+        }
+    }
     setMouseListener(new TextCanvasModeListener(this));
 }    
 
 public void placeText(Point point)
 {
-
     CanvasText text = getCanvas().addText(new Point(point.x - 50, point.y - 50));
     text.setLineWrap(true);
     text.addMouseListener(canvasTextListener);
@@ -41,11 +54,4 @@ public void placeText(Point point)
     getCanvas().resetActivitiesSelection();
     getCanvas().addSelectedCanvasActivity(text);
 }
-
-public void setTextFocus(CanvasText text)
-{
-    getCanvas().resetActivitiesSelection();
-    getCanvas().addSelectedCanvasActivity(text);
-}
-
 }

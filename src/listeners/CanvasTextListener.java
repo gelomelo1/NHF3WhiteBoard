@@ -20,7 +20,6 @@ package listeners;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import canvasmodes.DefaultCanvasMode;
 import canvasmodes.TextCanvasMode;
 import containers.CanvasText;
@@ -28,10 +27,12 @@ import containers.CanvasText;
 public class CanvasTextListener extends MouseAdapter {
 
     private DefaultCanvasMode defaultCanvasMode;
+    private boolean isDefaultMode;
 
-    public CanvasTextListener(TextCanvasMode defaultCanvasMode)
+    public CanvasTextListener(TextCanvasMode defaultCanvasMode, boolean isDefaultMode)
     {
         this.defaultCanvasMode = defaultCanvasMode;
+        this.isDefaultMode = isDefaultMode;
     }
 
     @Override
@@ -40,12 +41,11 @@ public class CanvasTextListener extends MouseAdapter {
         defaultCanvasMode.resetSelection();
         if(e.getButton() == MouseEvent.BUTTON1)
         {
-            if(e.getClickCount() == 1 && defaultCanvasMode instanceof TextCanvasMode)
+            if(e.getClickCount() == 1)
             {
-                TextCanvasMode textCanvasMode = (TextCanvasMode) defaultCanvasMode;
-                textCanvasMode.setTextFocus((CanvasText)e.getSource());
+                defaultCanvasMode.setTextFocus((CanvasText)e.getSource());
             }
-            else if(e.getClickCount() == 2 && defaultCanvasMode instanceof DefaultCanvasMode)
+            else if(e.getClickCount() == 2 && isDefaultMode)
             {
                 CanvasText canvasText = (CanvasText)e.getSource();
                 defaultCanvasMode.Selection(new Rectangle(canvasText.getX(), canvasText.getY(), 1, 1));
@@ -53,6 +53,11 @@ public class CanvasTextListener extends MouseAdapter {
             }
         }
         defaultCanvasMode.update();
+    }
+
+    public void setIsDefaultMode(boolean isDefaultMode)
+    {
+        this.isDefaultMode = isDefaultMode;
     }
 
     public void setDefaultCanvasMode(DefaultCanvasMode defaultCanvasMode)
