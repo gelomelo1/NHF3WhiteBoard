@@ -119,6 +119,12 @@ public class CanvasText extends JTextArea implements CanvasActivity {
       return getBounds();
     }
 
+    @Override
+    public String toString()
+    {
+      return "Text";
+    }
+
     public void changeFontSize(int size)
     {
       if(size >= minTextSize && size <= maxTextSize)

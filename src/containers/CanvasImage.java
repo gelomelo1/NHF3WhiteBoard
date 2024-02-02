@@ -162,6 +162,12 @@ public Rectangle getSelectedBounds() {
     return getBounds();
 }
 
+@Override
+public String toString()
+{
+    return "Image";
+}
+
 protected void paintComponent(Graphics g)
 {
     super.paintComponent(g);

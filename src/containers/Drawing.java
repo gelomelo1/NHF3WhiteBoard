@@ -133,4 +133,10 @@ public class Drawing implements CanvasActivity, Serializable {
     public Rectangle getSelectedBounds() {
         return null;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Draw";
+    }
 }

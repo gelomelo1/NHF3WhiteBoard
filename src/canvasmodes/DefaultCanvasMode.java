@@ -39,6 +39,7 @@ import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 import additions.CanvasActivity;
+import additions.MoveTransaction;
 import additions.SelectionRectangle;
 import containers.CanvasText;
 import listeners.CanvasTextListener;
@@ -197,7 +198,7 @@ public class DefaultCanvasMode {
             canvas.setSelectionRectangle(null);
         else
         {
-            canvas.setSelectionRectangle(getSumRectangle(canvas.getSelectedCanvasActivities(), canvas.getSelectionRectangle().getOffset()));
+            canvas.setSelectionRectangle(getSumRectangle(canvas.getSelectedCanvasActivities(), SelectionRectangle.getOffset()));
             ratio = new ArrayList<Integer>();
             for (CanvasActivity canvasActivity : canvas.getSelectedCanvasActivities()) {
                 ratio.add(getRatio(canvasActivity.getSelectedBounds(), canvas.getSelectionRectangle().getSelectionRectangle()) - 1);
@@ -227,6 +228,11 @@ public class DefaultCanvasMode {
         }
         canvas.getSelectionRectangle().moveCanvasObject(point);
         canvas.repaint();
+    }
+
+    public void confirmMovement(Point vector)
+    {
+        canvas.addTransactionToQueue(new MoveTransaction(canvas ,canvas.getSelectedCanvasActivities(), new Point(vector.x * -1, vector.y * -1)));
     }
 
     public void resize(Point point)
@@ -279,14 +285,6 @@ public class DefaultCanvasMode {
     public int getSelectedActivitiesCount()
     {
         return canvas.getSelectedCanvasActivities().size();
-    }
-
-    public boolean isSelectionExist()
-    {
-        if(canvas.getSelectionRectangle() != null)
-        return true;
-        else
-        return false;
     }
 
 }

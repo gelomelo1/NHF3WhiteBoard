@@ -100,6 +100,7 @@ package panels;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -109,11 +110,14 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.OverlayLayout;
+
 import additions.Background;
 import additions.Brush;
 import additions.CanvasActivity;
 import additions.ImageTransferHandler;
 import additions.SelectionRectangle;
+import additions.Transactions;
 import containers.CanvasImage;
 import containers.CanvasText;
 import containers.Drawing;
@@ -126,6 +130,8 @@ public class Canvas extends JPanel {
     private int maxHeight = 20000;
 
     private JScrollPane canvasLayout;
+    private HistoryPanel historyPanel;
+    public JPanel middlePanel;
     private Background background;
     private MouseAdapter selectedListener;
     private ToolPropertiesMenu toolPropertiesMenu;
@@ -157,17 +163,27 @@ public class Canvas extends JPanel {
     {
         setTransferHandler(new ImageTransferHandler(this));
         canvasLayout = new JScrollPane();
+        canvasLayout.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        canvasLayout.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        historyPanel = new HistoryPanel();
+        middlePanel = new JPanel();
+        OverlayLayout overlayLayout = new OverlayLayout(middlePanel);
+        middlePanel.setLayout(overlayLayout);
+        middlePanel.add(historyPanel);
+        middlePanel.add(canvasLayout);
         setLayout(null);
-        jf.add(canvasLayout, BorderLayout.CENTER);
+        jf.add(middlePanel, BorderLayout.CENTER);
         background = new Background();
         newCanvas();
         brush = new Brush();
         mousePos = new Point(0, 0);
         toolPropertiesMenu = null;
+        middlePanel.revalidate();
     }
 
     private void initializeLoadedData()
     {
+        historyPanel.reset();
         removeAll();
         selectedCanvasActivities = new ArrayList<CanvasActivity>();
         for (CanvasImage canvasImage : images) {
@@ -207,6 +223,7 @@ public class Canvas extends JPanel {
         if(selectionRectangle != null)
         selectionRectangle.drawSelectionRectangle(g2);
         drawCurves(g2);
+        middlePanel.repaint();
     }
 
     public void setMouseListener(MouseAdapter mouseListener)
@@ -281,6 +298,11 @@ public class Canvas extends JPanel {
         add(image);
         images.add(image);
         return image;
+    }
+
+    public void addTransactionToQueue(Transactions transaction)
+    {
+        historyPanel.getQueue().addItem(transaction);
     }
 
     public MouseAdapter getSelectedListener()

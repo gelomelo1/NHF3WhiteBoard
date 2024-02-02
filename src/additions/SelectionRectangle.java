@@ -11,7 +11,7 @@ public class SelectionRectangle implements MoveAndResize {
     private boolean invertedHeight = false;
     private Rectangle selectionRectangle;
     private BasicStroke stroke = new BasicStroke(5);
-    private int offset = 5;
+    private static final int offset = 5;
 
     public SelectionRectangle(Rectangle selectionRectangle)
     {
@@ -28,7 +28,7 @@ public class SelectionRectangle implements MoveAndResize {
         return stroke.getLineWidth();
     }
 
-    public int getOffset()
+    public static int getOffset()
     {
         return offset;
     }
