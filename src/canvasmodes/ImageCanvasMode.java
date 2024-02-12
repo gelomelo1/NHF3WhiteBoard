@@ -25,7 +25,13 @@ package canvasmodes;
 import java.awt.Point;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
+import additions.CanvasActivity;
+import additions.PlaceEraseTransaction;
+import additions.PlaceEraseTransaction.PlaceEraseForwardMode;
 import containers.CanvasImage;
 import fileios.FileHandler;
 import listeners.ImageCanvasModeListener;
@@ -60,9 +66,12 @@ public void placeImage(Point point, String path)
     destination += "\\" + rename;
     else
     destination += path.substring(path.lastIndexOf("\\"));
-    getCanvas().addImage(new Point(point.x - 50, point.y - 50), defaultImageWidth, defaultImageHeight, destination);
+    CanvasImage image = getCanvas().addImage(new Point(point.x - 50, point.y - 50), defaultImageWidth, defaultImageHeight, destination);
     getCanvas().repaint();
     getCanvas().resetActivitiesSelection();
+    ArrayList<CanvasActivity> images = new ArrayList<CanvasActivity>();
+    images.add(image);
+    getCanvas().addTransactionToQueue(new PlaceEraseTransaction(getCanvas(), images, PlaceEraseForwardMode.Place));
     }
 }
 

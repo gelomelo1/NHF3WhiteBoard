@@ -22,4 +22,5 @@ public interface CanvasActivity extends MoveAndResize {
     public void resetSelected();
     public Rectangle getSelectedBounds();
     public String toString();
+    public void placeItself(Canvas canvas);
 }

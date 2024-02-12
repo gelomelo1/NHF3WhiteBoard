@@ -2,6 +2,8 @@ package additions;
 
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
+
+import canvasmodes.DefaultCanvasMode;
 import panels.Canvas;
 import panels.ToolPropertiesMenu;
 
@@ -62,5 +64,11 @@ public abstract class Transactions {
     protected ArrayList<CanvasActivity> getTransactionObjects()
     {
         return transactionObjects;
+    }
+
+    protected void resetListenersSelections(DefaultCanvasMode defaultCanvasMode)
+    {
+        getCanvas().setMouseListener(null);
+        defaultCanvasMode.resetSelection();
     }
 }

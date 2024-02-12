@@ -23,19 +23,9 @@ public class HistoryButton extends JButton {
 
     public void startTransaction()
     {
-        Transactions originalSelectedTransaction = (Transactions) historyPanel.getQueue().getSelectedItem();
-        Transactions selectedTransaction;
         if(dir == direction.undo)
-        {
-            selectedTransaction = historyPanel.getQueue().switchSelected(-1);
-            if(selectedTransaction != originalSelectedTransaction)
-            originalSelectedTransaction.executeBacward();
-        }
+            historyPanel.getQueue().switchSelected(-1);
         else
-        {
-            selectedTransaction = historyPanel.getQueue().switchSelected(1);
-            if(selectedTransaction != originalSelectedTransaction)
-            selectedTransaction.executeForward();
-        }
+            historyPanel.getQueue().switchSelected(1);
     }
 }

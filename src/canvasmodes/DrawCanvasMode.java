@@ -15,6 +15,12 @@ package canvasmodes;
 
 import listeners.DrawCanvasModeListener;
 import java.awt.Point;
+import java.util.ArrayList;
+
+import additions.Brush;
+import additions.CanvasActivity;
+import additions.PlaceEraseTransaction;
+import additions.PlaceEraseTransaction.PlaceEraseForwardMode;
 import containers.Drawing;
 import panels.Canvas;
 import panels.ToolPropertiesMenu;
@@ -31,7 +37,11 @@ public DrawCanvasMode(Canvas canvas, ToolPropertiesMenu toolPropertiesMenu)
 public void StartNewCurve(Point point)
 {
     tempCurve = new Drawing();
+    tempCurve.setBrush(new Brush(getCanvas().getBrush()));
     getCanvas().addCurve(tempCurve);
+    ArrayList<CanvasActivity> curves = new ArrayList<CanvasActivity>();
+    curves.add(tempCurve);
+    getCanvas().addTransactionToQueue(new PlaceEraseTransaction(getCanvas(), curves, PlaceEraseForwardMode.Place));
 }
 
 public void AddPoint(Point point)

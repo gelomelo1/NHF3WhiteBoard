@@ -2,7 +2,6 @@ package additions;
 
 import java.awt.Point;
 import java.util.ArrayList;
-
 import canvasmodes.DefaultCanvasMode;
 import panels.Canvas;
 
@@ -28,8 +27,7 @@ public class MoveTransaction extends Transactions {
     private void move(Point selectedVector)
     {
         DefaultCanvasMode defaultCanvasMode = new DefaultCanvasMode(getCanvas(), null);
-        getCanvas().setMouseListener(null);
-        defaultCanvasMode.resetSelection();
+        resetListenersSelections(defaultCanvasMode);
         for (CanvasActivity canvasActivity : getTransactionObjects()) {
             getCanvas().addSelectedCanvasActivity(canvasActivity);
         }

@@ -175,4 +175,9 @@ protected void paintComponent(Graphics g)
     g.drawImage(image.getImage(), 0, 0, getWidth(), getHeight(), null);
 }
 
+@Override
+public void placeItself(Canvas canvas) {
+    canvas.addImage(this);
+}
+
 }

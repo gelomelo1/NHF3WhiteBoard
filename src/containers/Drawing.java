@@ -139,4 +139,9 @@ public class Drawing implements CanvasActivity, Serializable {
     {
         return "Draw";
     }
+
+    @Override
+    public void placeItself(Canvas canvas) {
+        canvas.addCurve(this);
+    }
 }

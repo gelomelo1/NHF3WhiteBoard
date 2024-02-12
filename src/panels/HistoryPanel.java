@@ -10,6 +10,7 @@ import additions.HistoryButton;
 import additions.HistoryQueue;
 import additions.Transactions;
 import additions.HistoryButton.direction;
+import listeners.HistoryQueueListener;
 
 public class HistoryPanel extends JPanel {
 
@@ -27,6 +28,7 @@ public class HistoryPanel extends JPanel {
     {
         undo = createButton(direction.undo, "<");
         queue = new HistoryQueue<Transactions>();
+        queue.addItemListener(new HistoryQueueListener(this));
         queue.addItem(new DefaultTransaction());
         redo = createButton(direction.redo, ">");
         add(undo);

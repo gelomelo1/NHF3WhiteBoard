@@ -111,7 +111,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.OverlayLayout;
-
 import additions.Background;
 import additions.Brush;
 import additions.CanvasActivity;
@@ -248,7 +247,6 @@ public class Canvas extends JPanel {
     public void addCurve(Drawing curve)
     {
         curves.add(curve);
-        curve.setBrush(new Brush(brush));
     }
 
     public void setMousePos(Point point)
@@ -291,6 +289,12 @@ public class Canvas extends JPanel {
         return text;
     }
 
+    public void addText(CanvasText canvasText)
+    {
+        add(canvasText);
+        texts.add(canvasText);
+    }
+
     public CanvasImage addImage(Point point, int width, int height, String path)
     {
         CanvasImage image = new CanvasImage(path);
@@ -298,6 +302,12 @@ public class Canvas extends JPanel {
         add(image);
         images.add(image);
         return image;
+    }
+
+    public void addImage(CanvasImage canvasImage)
+    {
+        add(canvasImage);
+        images.add(canvasImage);
     }
 
     public void addTransactionToQueue(Transactions transaction)

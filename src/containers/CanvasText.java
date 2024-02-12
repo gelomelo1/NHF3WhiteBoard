@@ -130,4 +130,9 @@ public class CanvasText extends JTextArea implements CanvasActivity {
       if(size >= minTextSize && size <= maxTextSize)
       setFont(new Font("Verdana", Font.PLAIN, size));
     }
+
+    @Override
+    public void placeItself(Canvas canvas) {
+      canvas.addText(this);
+    }
 }

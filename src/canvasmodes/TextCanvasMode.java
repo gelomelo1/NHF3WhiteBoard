@@ -14,6 +14,11 @@
 package canvasmodes;
 
 import java.awt.Point;
+import java.util.ArrayList;
+
+import additions.CanvasActivity;
+import additions.PlaceEraseTransaction;
+import additions.PlaceEraseTransaction.PlaceEraseForwardMode;
 import containers.CanvasText;
 import listeners.CanvasTextListener;
 import listeners.TextCanvasModeListener;
@@ -53,5 +58,8 @@ public void placeText(Point point)
     getCanvas().repaint();
     getCanvas().resetActivitiesSelection();
     getCanvas().addSelectedCanvasActivity(text);
+    ArrayList<CanvasActivity> texts = new ArrayList<CanvasActivity>();
+    texts.add(text);
+    getCanvas().addTransactionToQueue(new PlaceEraseTransaction(getCanvas(), texts, PlaceEraseForwardMode.Place));
 }
 }
