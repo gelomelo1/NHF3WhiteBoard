@@ -127,6 +127,7 @@ public class Canvas extends JPanel {
     //base properties
     private int maxWidth = 20000;
     private int maxHeight = 20000;
+    private static int selectionWidth = 5;
 
     private JScrollPane canvasLayout;
     private HistoryPanel historyPanel;
@@ -201,16 +202,7 @@ public class Canvas extends JPanel {
     private void drawCurves(Graphics2D g2)
     {
         for (Drawing curve : curves) {
-            g2.setColor(curve.getColor());
-            g2.setStroke(curve.getStroke());
-            for(int i = 1; i < curve.getCurve().size(); i++)
-            {
-                int x1 = curve.getCurve().get(i - 1).x;
-                int y1 = curve.getCurve().get(i - 1).y;
-                int x2 = curve.getCurve().get(i).x;
-                int y2 = curve.getCurve().get(i).y;
-                g2.drawLine(x1, y1, x2, y2);
-            }
+            curve.draw(g2);
         }
     }
 
@@ -433,6 +425,11 @@ public class Canvas extends JPanel {
     public ToolPropertiesMenu getToolPropertiesMenu()
     {
         return toolPropertiesMenu;
+    }
+
+    public static int getSelectionWidth()
+    {
+        return selectionWidth;
     }
 
     public void newCanvas()

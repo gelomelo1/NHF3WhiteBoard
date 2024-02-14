@@ -94,7 +94,7 @@ public void erase(Canvas canvas) {
 
 @Override
 public void setSelected() {
-    setBorder(BorderFactory.createLineBorder(Color.black, 5));
+    setBorder(BorderFactory.createLineBorder(Color.black, Canvas.getSelectionWidth()));
 }
 
 @Override
